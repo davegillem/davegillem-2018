@@ -83,7 +83,7 @@ export class MainContainer extends React.Component<{}, {}> {
 		this.state = {};
 	}
 	public componentDidMount() {
-		getData(getApplications, null, 'mainData')
+		getData(getApplications, {}, 'mainData')
 			.then(({ ...postData }) => {
 				console.log('postData', postData);
 				this.setState({ applications: postData.applications, loading: false });

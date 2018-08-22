@@ -28,7 +28,7 @@ export class AboutContainer extends React.Component<IAboutContainerProps, any> {
 		this.state = {};
 	}
 	public componentDidMount() {
-		getData(getApplications, null, 'aboutData')
+		getData(getApplications, {}, 'aboutData')
 			.then(({ ...postData }) => {
 				console.log('postData', postData);
 				this.setState({ applications: postData.applications, loading: false });

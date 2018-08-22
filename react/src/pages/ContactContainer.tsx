@@ -44,7 +44,7 @@ export class ContactContainer extends React.Component<IContactContainerProps, an
 		this.state = {};
 	}
 	public componentDidMount() {
-		getData(getApplications, null, 'contactData')
+		getData(getApplications, {}, 'contactData')
 			.then(({ ...postData }) => {
 				console.log('postData', postData);
 				this.setState({ applications: postData.applications, loading: false });

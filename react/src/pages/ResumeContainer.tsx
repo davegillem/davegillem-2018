@@ -41,7 +41,7 @@ export class ResumeContainer extends React.Component<IResumeContainerProps, any>
 		this.state = {};
 	}
 	public componentDidMount() {
-		getData(getApplications, null, 'resumeData')
+		getData(getApplications, {}, 'resumeData')
 			.then(({ ...postData }) => {
 				console.log('postData', postData);
 				this.setState({ applications: postData.applications, loading: false });

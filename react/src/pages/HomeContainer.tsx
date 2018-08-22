@@ -30,7 +30,7 @@ export class HomeContainer extends React.Component<IHomeContainerProps, any> {
 		this.state = {};
 	}
 	public componentDidMount() {
-		getData(getApplications, null, 'homeData')
+		getData(getApplications, {}, 'homeData')
 			.then(({ ...postData }) => {
 				console.log('postData', postData);
 				this.setState({ applications: postData.applications, loading: false });
