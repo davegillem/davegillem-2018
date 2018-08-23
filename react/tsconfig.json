@@ -9,6 +9,7 @@
 		"jsx": "react",
 		"lib": [
 			"es6",
+			"es2015.promise",
 			"dom"
 		],
 		"module": "es6",

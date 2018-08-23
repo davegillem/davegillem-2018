@@ -42,7 +42,7 @@ export class Employer extends React.Component<IEmployerProps, any> {
 					{this.props.location}
 				</div>
 				<div className="jobDescription" itemProp="description" />
-				{this.props.content.rendered}
+				{/* {this.props.content.rendered} */}
 				{this.props.additional.length && (
 					<div className="jobAddl" itemProp="alternateName">
 						ADDITIONAL: {this.props.additional}

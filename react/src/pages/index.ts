@@ -1,3 +1,4 @@
+export * from './Router';
 export * from './AboutContainer';
 export * from './ContactContainer';
 export * from './HomeContainer';

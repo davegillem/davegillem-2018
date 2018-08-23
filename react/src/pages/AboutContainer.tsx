@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { getData } from 'utilities';
+import { getData, getPages } from 'utilities';
 
 interface IAboutContainerProps extends ILoadedState {
 	temp?: string;
@@ -28,15 +28,15 @@ export class AboutContainer extends React.Component<IAboutContainerProps, any> {
 		this.state = {};
 	}
 	public componentDidMount() {
-		getData(getApplications, {}, 'aboutData')
+		getData(getPages, {}, 'aboutData')
 			.then(({ ...postData }) => {
 				console.log('postData', postData);
-				this.setState({ applications: postData.applications, loading: false });
+				// this.setState({ applications: postData.applications, loading: false });
 			})
 			// TODO: better error handling. Right now, there is no useful error message. So we return a generic textkeys.
 			.catch((error: any) => {
 				console.log('error');
-				this.setState({ loading: false, notification: textKeys.genericError });
+				// this.setState({ loading: false, notification: textKeys.genericError });
 			});
 	}
 	public render() {

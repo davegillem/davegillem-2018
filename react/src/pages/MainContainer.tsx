@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { getData } from 'utilities';
-import { LoadingLogo, SocialContainer } from 'components';
+import { SocialContainer } from 'components';
+// import { getData, getPages } from 'utilities';
 
 // import * as Router from 'utilities';
 // import { Footer, Navbar } from 'components';
@@ -77,22 +77,22 @@ import { LoadingLogo, SocialContainer } from 'components';
 // };
 
 export class MainContainer extends React.Component<{}, {}> {
-	private isLoading: boolean = true;
+	// private isLoading: boolean = true;
 	constructor(props: any) {
 		super(props);
 		this.state = {};
 	}
 	public componentDidMount() {
-		getData(getApplications, {}, 'mainData')
-			.then(({ ...postData }) => {
-				console.log('postData', postData);
-				this.setState({ applications: postData.applications, loading: false });
-			})
-			// TODO: better error handling. Right now, there is no useful error message. So we return a generic textkeys.
-			.catch((error: any) => {
-				console.log('error');
-				this.setState({ loading: false, notification: textKeys.genericError });
-			});
+		// getData(getPages, {}, 'mainData')
+		// 	.then(({ ...postData }) => {
+		// 		console.log('postData', postData);
+		// 		// this.setState({ applications: postData.applications, loading: false });
+		// 	})
+		// 	// TODO: better error handling. Right now, there is no useful error message. So we return a generic textkeys.
+		// 	.catch((error: any) => {
+		// 		console.log('error');
+		// 		// this.setState({ loading: false, notification: textKeys.genericError });
+		// 	});
 	}
 	public render(): React.ReactNode {
 		return (
@@ -100,11 +100,11 @@ export class MainContainer extends React.Component<{}, {}> {
 				{/* <section className='section'  className='{open: burgerActive}'> */}
 				<section className="section">
 					{/* <transition name='slide-fade' appear={true} v-on={true}:after-leave='afterLeave' v-on:before-enter='beforeEnter'> */}
-					{this.isLoading && (
+					{/* {this.isLoading && (
 						<div className="loading">
 							<LoadingLogo id="loadingLogo" />
 						</div>
-					)}
+					)} */}
 					{/* </transition> */}
 					{/* <div id='routerWrapper' v-bind={true}className='[showLoader ? 'hideView={true}' : 'showView']'>
 						<transition name='fade' mode='out-in' appear={true}>

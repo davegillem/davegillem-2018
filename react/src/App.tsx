@@ -1,10 +1,108 @@
 import * as React from 'react';
-import { Footer, Navbar } from 'components';
+import { Footer, LoadingLogo, Navbar } from 'components';
+import {
+	getData,
+	getEducation,
+	getEmployers,
+	getPages,
+	getReferences,
+	getSocial,
+	getTextKeys,
+	startLogger
+	} from 'utilities';
 import { MainContainer } from 'pages';
-import { startLogger } from 'utilities';
-// import * as Router from 'utilities';
 
 startLogger();
+
+interface IAppState {
+	education: IEducationData[];
+	isLoading: boolean;
+	pages: IPage;
+	pageItems: IPageData[];
+	references: IReferenceData[];
+	social: ISocialAccountData[];
+	textKeyData: ITextKeyData[];
+	textKeys: ITextKeys;
+	work: IEmployerData[];
+}
+
+export class App extends React.Component<{}, IAppState> {
+	constructor(props: any) {
+		super(props);
+		this.state = {
+			education: [],
+			isLoading: true,
+			pageItems: [],
+			pages: {},
+			references: [],
+			social: [],
+			textKeyData: [],
+			textKeys: {},
+			work: []
+		};
+	}
+	public processData = (wpData: IAppState) => {
+		const tempPages: IPage = {};
+		const tempKeys: ITextKeys = {};
+		const { pageItems, textKeyData, ...other }: IAppState = wpData;
+		pageItems.map(page => {
+			tempPages[page.slug] = page;
+		});
+		textKeyData.map(key => {
+			tempKeys[key.slug] = key.description;
+		});
+		this.setState({ pages: tempPages, textKeys: tempKeys, ...other });
+		console.log('RESULT', this.state);
+	};
+	public componentDidMount() {
+		try {
+			Promise.all<
+				Promise<IPageData[]>,
+				Promise<ITextKeyData[]>,
+				Promise<ISocialAccountData[]>,
+				Promise<IEmployerData[]>,
+				Promise<IEducationData[]>,
+				Promise<IReferenceData[]>
+			>([
+				getData(getPages),
+				getData(getTextKeys),
+				getData(getSocial),
+				getData(getEmployers),
+				getData(getEducation),
+				getData(getReferences)
+			]).then(([pageItems, textKeyData, social, work, education, references]) => {
+				const wpData: any = {
+					education: education,
+					pageItems: pageItems,
+					references: references,
+					social: social,
+					textKeyData: textKeyData,
+					work: work
+				};
+				this.processData(wpData);
+			});
+		} catch (err) {
+			console.log(err);
+		}
+	}
+	public render(): React.ReactNode {
+		return (
+			<div id="appMain" itemScope={true} itemType="http://schema.org/WebPage">
+				{this.state.isLoading ? (
+					<div className="loading">
+						<LoadingLogo id="loadingLogo" />
+					</div>
+				) : (
+					<>
+						<Navbar />
+						<MainContainer />
+						<Footer />
+					</>
+				)}
+			</div>
+		);
+	}
+}
 
 // const EventBus = new Vue();
 // const dict = {
@@ -24,7 +122,7 @@ startLogger();
 // Validator.localize('en', dict);
 // Vue.use(VeeValidate);
 
-// // eslint-disable-next-line
+// eslint-disable-next-line
 // Vue.config.productionTip = false;
 // Vue.config.devtools = true;
 
@@ -35,7 +133,7 @@ startLogger();
 // 		}
 // 	}
 // });
-// // clean up date passed in from Wordpress API
+// clean up date passed in from Wordpress API
 // function cleanWPdate(dateStr){
 // 	let pattern = /(\d{2})(\d{2})(\d{4})/;
 // 	return new Date(dateStr.replace(pattern, '$3-$1-$2'));
@@ -152,17 +250,3 @@ startLogger();
 // 	created : function () {
 // 		this.changeRoute(this.$route);
 // 	}
-
-class App extends React.Component<{}, {}> {
-	public render(): React.ReactNode {
-		return (
-			<div id="app" itemScope={true} itemType="http://schema.org/WebPage">
-				<Navbar />
-				<MainContainer />
-				<Footer />
-			</div>
-		);
-	}
-}
-
-export default App;

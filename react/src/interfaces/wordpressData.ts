@@ -8,11 +8,17 @@ interface IPageData {
 	title: IRenderedContent;
 	content: IRenderedContent;
 }
+interface IPage {
+	[pageName: string]: IPageData;
+}
 
 interface ITextKeyData {
 	id: number;
 	description: string;
 	slug: string;
+}
+interface ITextKeys {
+	[keyName: string]: string;
 }
 
 interface ISocialAccountData {
