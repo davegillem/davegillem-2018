@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-interface ILogoProps {
-	id?: string;
+interface ILoadingLogoProps {
+	id: string;
 }
 const stroke: string = '#e7e6e2';
 const strokeDasharray: string = '2800 2800';
@@ -10,7 +10,7 @@ const strokeLinecap: 'square' | 'inherit' | 'round' | 'butt' | undefined = 'roun
 const strokeMiterlimit: number = 10;
 const strokeWidth: number = 2;
 
-export const LoadingLogo = (props: ILogoProps) => (
+export const LoadingLogo = (props: ILoadingLogoProps) => (
 	<svg viewBox="0 0 250 500" {...props}>
 		<path
 			stroke={stroke}

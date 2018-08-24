@@ -99,6 +99,7 @@ export class MainContainer extends React.Component<{}, {}> {
 			<div id="main-content" className="content-wrapper" itemProp="mainContentOfPage">
 				{/* <section className='section'  className='{open: burgerActive}'> */}
 				<section className="section">
+				Main Content Here
 					{/* <transition name='slide-fade' appear={true} v-on={true}:after-leave='afterLeave' v-on:before-enter='beforeEnter'> */}
 					{/* {this.isLoading && (
 						<div className="loading">

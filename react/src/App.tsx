@@ -26,6 +26,8 @@ interface IAppState {
 	work: IEmployerData[];
 }
 
+export const DataContext = React.createContext({} as IAppState);
+
 export class App extends React.Component<{}, IAppState> {
 	constructor(props: any) {
 		super(props);
@@ -51,7 +53,7 @@ export class App extends React.Component<{}, IAppState> {
 		textKeyData.map(key => {
 			tempKeys[key.slug] = key.description;
 		});
-		this.setState({ pages: tempPages, textKeys: tempKeys, ...other });
+		this.setState({ pages: tempPages, textKeys: tempKeys, ...other, isLoading: false });
 		console.log('RESULT', this.state);
 	};
 	public componentDidMount() {
@@ -86,6 +88,7 @@ export class App extends React.Component<{}, IAppState> {
 		}
 	}
 	public render(): React.ReactNode {
+		// const dataContext: object = this.state;
 		return (
 			<div id="appMain" itemScope={true} itemType="http://schema.org/WebPage">
 				{this.state.isLoading ? (
@@ -93,11 +96,12 @@ export class App extends React.Component<{}, IAppState> {
 						<LoadingLogo id="loadingLogo" />
 					</div>
 				) : (
-					<>
+					// <DataContext.Provider value={this.state.textKeys}>
+					<DataContext.Provider value={this.state}>
 						<Navbar />
 						<MainContainer />
 						<Footer />
-					</>
+					</DataContext.Provider>
 				)}
 			</div>
 		);
