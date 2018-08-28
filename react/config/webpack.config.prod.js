@@ -15,7 +15,7 @@ const publicPath = paths.servedPath;
 const shouldUseRelativeAssetPaths = publicPath === './';
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'true'; // eslint-disable-line
 const publicUrl = publicPath.slice(0, -1);
-const cssFilename = 'css/[name].css';
+const cssFilename = 'css/app.css';
 const extractTextPluginOptions = shouldUseRelativeAssetPaths ? {
 	publicPath: Array(cssFilename.split('/')
 			.length)
@@ -33,8 +33,8 @@ module.exports = baseConfig.merge({
 	devtool: 'source-map',
 	output: {
 		path: paths.appBuild,
-		filename: 'js/[name].js',
-		chunkFilename: 'js/[name].chunk.js',
+		filename: 'js/app.js',
+		chunkFilename: 'js/app.chunk.js',
 		publicPath: publicPath,
 		devtoolModuleFilenameTemplate: info =>
 			path

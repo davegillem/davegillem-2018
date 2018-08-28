@@ -8,7 +8,7 @@ import { BASE_API_PATH, getApiCall } from './Http';
  * @param optional object that contains key value pairs to override the default method and headers that should be used in the api call
  */
 export const getPages: IDataMethod = getApiCall(
-	`${BASE_API_PATH}pages?slug[]=about&slug[]=home&slug[]=resume&fields=id,slug,title.rendered,content.rendered`
+	`${BASE_API_PATH}pages?slug=about,home,resume&fields=id,slug,title.rendered,content.rendered`
 );
 export const getTextKeys: IDataMethod = getApiCall(
 	`${BASE_API_PATH}categories?parent=3&fields=id,slug,description&per_page=50`
