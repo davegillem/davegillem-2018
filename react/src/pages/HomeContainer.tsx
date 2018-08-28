@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { getData, getPages } from 'utilities';
+import { DataContext } from 'App';
 
 export interface IHomeContainerProps extends ILoadedState {
 	temp?: string;
@@ -30,34 +30,34 @@ export class HomeContainer extends React.Component<IHomeContainerProps, any> {
 		this.state = {};
 	}
 	public componentDidMount() {
-		getData(getPages, {}, 'homeData')
-			.then(({ ...postData }) => {
-				console.log('postData', postData);
-				// this.setState({ applications: postData.applications, loading: false });
-			})
-			// TODO: better error handling. Right now, there is no useful error message. So we return a generic textkeys.
-			.catch((error: any) => {
-				console.log('error');
-				// this.setState({ loading: false, notification: textKeys.genericError });
-			});
+		// getData(getPages, {}, 'homeData')
+		// 	.then(({ ...postData }) => {
+		// 		console.log('postData', postData);
+		// 		// this.setState({ applications: postData.applications, loading: false });
+		// 	})
+		// 	// TODO: better error handling. Right now, there is no useful error message. So we return a generic textkeys.
+		// 	.catch((error: any) => {
+		// 		console.log('error');
+		// 		// this.setState({ loading: false, notification: textKeys.genericError });
+		// 	});
 	}
 	public render() {
 		return (
-			<div>
-				HOME PAGE
-				{/* {this.props.isLoaded && <div className='container' id='tldr' itemScope={true} itemType='http://schema.org/AboutPage'>
-				{this.props.pages.map((page, index) => {
-					return (
-						<div className='box' key='page.id'>
-							<h2 className='title'>{page.title.rendered}</h2>
-							<div id='tldr-content'>{page.content.rendered}</div>
+			<DataContext.Consumer>
+				{(dataContext: any) => (
+					<>
+						<div className="container" id="tldr" itemScope={true} itemType="http://schema.org/AboutPage">
+							<div className="box" key="page.id">
+								<h2 className="title">{dataContext.pages.home.title.rendered}</h2>
+								<div
+									id="tldr-content"
+									dangerouslySetInnerHTML={{ __html: dataContext.pages.home.content.rendered }}
+								/>
+							</div>
 						</div>
-					)
-				})}
-			</div>
-				
-		} */}
-			</div>
+					</>
+				)}
+			</DataContext.Consumer>
 		);
 	}
 }

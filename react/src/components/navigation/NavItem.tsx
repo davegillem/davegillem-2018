@@ -9,7 +9,7 @@ interface INavItemProps {
 export const NavItem: React.SFC<INavItemProps> = (props): React.ReactElement<any> => {
 	return (
 		<div className="appNavLink">
-			<NavLink to={props.path} exact={true} className="" data-hover={props.label}>
+			<NavLink to={props.path} exact={true} className="" activeClassName="is-active" data-hover={props.label}>
 				{props.label}
 			</NavLink>
 		</div>

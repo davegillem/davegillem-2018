@@ -96,7 +96,6 @@ export class App extends React.Component<{}, IAppState> {
 						<LoadingLogo id="loadingLogo" />
 					</div>
 				) : (
-					// <DataContext.Provider value={this.state.textKeys}>
 					<DataContext.Provider value={this.state}>
 						<Navbar />
 						<MainContainer />

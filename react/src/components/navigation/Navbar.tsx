@@ -44,11 +44,11 @@ export class Navbar extends React.Component<INavbarProps, INavbarState> {
 							</div>
 							<Router>
 								<div id="appNavbar" className="">
-									<NavItem path="/" label={dataContext.textKeys['nav-landing']} />
-									<NavItem path="/about" label={dataContext.textKeys['nav-about']} />
+									<NavItem path="/" label={dataContext.textKeys.nav_landing} />
+									<NavItem path="/about" label={dataContext.textKeys.nav_about} />
 									<SiteLogo path="/" id="dgLogo" />
-									<NavItem path="/resume" label={dataContext.textKeys['nav-resume']} />
-									<NavItem path="/contact" label={dataContext.textKeys['nav-contact']} />
+									<NavItem path="/resume" label={dataContext.textKeys.nav_resume} />
+									<NavItem path="/contact" label={dataContext.textKeys.nav_contact} />
 									{/* <div className='appNavLink socialMenu'>
 									<div className='has-dropdown is-hoverable'>
 										<div className='navbar-dropdown is-boxed'>

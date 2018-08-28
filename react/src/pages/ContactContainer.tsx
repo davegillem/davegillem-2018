@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { getData, getPages } from 'utilities';
+import { DataContext } from 'App';
 
 export interface IContactContainerProps extends ILoadedState {
 	temp?: string;
@@ -44,22 +44,24 @@ export class ContactContainer extends React.Component<IContactContainerProps, an
 		this.state = {};
 	}
 	public componentDidMount() {
-		getData(getPages, {}, 'contactData')
-			.then(({ ...postData }) => {
-				console.log('postData', postData);
-				// this.setState({ applications: postData.applications, loading: false });
-			})
-			// TODO: better error handling. Right now, there is no useful error message. So we return a generic textkeys.
-			.catch((error: any) => {
-				console.log('error');
-				// this.setState({ loading: false, notification: textKeys.genericError });
-			});
+		// getData(getPages, {}, 'contactData')
+		// 	.then(({ ...postData }) => {
+		// 		console.log('postData', postData);
+		// 		// this.setState({ applications: postData.applications, loading: false });
+		// 	})
+		// 	// TODO: better error handling. Right now, there is no useful error message. So we return a generic textkeys.
+		// 	.catch((error: any) => {
+		// 		console.log('error');
+		// 		// this.setState({ loading: false, notification: textKeys.genericError });
+		// 	});
 	}
 	public render() {
 		return (
-			<div>
-				CONTACT PAGE
-				{/* <div className='container' id='contact-form' itemScope={true} itemType='http://schema.org/ContactPage'>
+			<DataContext.Consumer>
+				{(dataContext: any) => (
+					<>
+						CONTACT PAGE
+						{/* <div className='container' id='contact-form' itemScope={true} itemType='http://schema.org/ContactPage'>
 		<form id='contact-dg-form' accept-charset='UTF-8' action='https://usebasin.com/f/60d54aefd589' enctype='multipart/form-data' method='POST' @submit='validateBeforeSubmit' className='{'submitted':formSubmitted, 'thankyou':!formSubmitted }'>
 			<div className='field'>
 				<label className='label'>Name<span className='required'></span></label>
@@ -99,7 +101,9 @@ export class ContactContainer extends React.Component<IContactContainerProps, an
 			<h2>Thank you, I'll be in touch... maybe...</h2>
 		</div>
 	</div> */}
-			</div>
+					</>
+				)}
+			</DataContext.Consumer>
 		);
 	}
 }

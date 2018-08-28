@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { getData, getPages } from 'utilities';
-import { Resume } from 'components';
+import { DataContext } from 'App';
+// import { Resume } from 'components';
 
 export interface IResumeContainerProps extends ILoadedState {
 	temp?: string;
@@ -41,22 +41,18 @@ export class ResumeContainer extends React.Component<IResumeContainerProps, any>
 		this.state = {};
 	}
 	public componentDidMount() {
-		getData(getPages, {}, 'resumeData')
-			.then(({ ...postData }) => {
-				console.log('postData', postData);
-				// this.setState({ applications: postData.applications, loading: false });
-			})
-			// TODO: better error handling. Right now, there is no useful error message. So we return a generic textkeys.
-			.catch((error: any) => {
-				console.log('error');
-				// this.setState({ loading: false, notification: textKeys.genericError });
-			});
+		// getData(getPages, {}, 'resumeData')
+		// 	.then(({ ...postData }) => {
+		// 		console.log('postData', postData);
+		// 		// this.setState({ applications: postData.applications, loading: false });
+		// 	})
+		// 	// TODO: better error handling. Right now, there is no useful error message. So we return a generic textkeys.
+		// 	.catch((error: any) => {
+		// 		console.log('error');
+		// 		// this.setState({ loading: false, notification: textKeys.genericError });
+		// 	});
 	}
 	public render() {
-		return (
-			<div>
-				<Resume />
-			</div>
-		);
+		return <DataContext.Consumer>{(dataContext: any) => <>RESUME PAGE</>}</DataContext.Consumer>;
 	}
 }

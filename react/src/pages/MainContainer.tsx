@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Router } from 'pages';
 import { SocialContainer } from 'components';
 // import { getData, getPages } from 'utilities';
 
@@ -97,9 +98,9 @@ export class MainContainer extends React.Component<{}, {}> {
 	public render(): React.ReactNode {
 		return (
 			<div id="main-content" className="content-wrapper" itemProp="mainContentOfPage">
-				{/* <section className='section'  className='{open: burgerActive}'> */}
+				{/* <section className={'section' + (this.state.burgerActive ? ' open' : '')}> */}
 				<section className="section">
-				Main Content Here
+					<Router />
 					{/* <transition name='slide-fade' appear={true} v-on={true}:after-leave='afterLeave' v-on:before-enter='beforeEnter'> */}
 					{/* {this.isLoading && (
 						<div className="loading">

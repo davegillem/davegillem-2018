@@ -2,13 +2,11 @@
 @import "node_modules/bulma/sass/utilities/initial-variables";
 @import "_bulmaOverrideVariables";
 @import "node_modules/bulma/bulma";
-
 // Shared
 @import "_dgVariables";
 @import "_dgMixins";
 @import "_dgUtilities";
 @import "_dgGlobal";
-
 // Screen Specific
 @import "_dgNav";
 @import "_dgContact";
