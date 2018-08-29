@@ -1,9 +1,27 @@
 import * as React from 'react';
 // import { Education, Employer, Reference } from './';
 
-export interface IResumeProps extends ILoadedState {
-	temp?: string;
+interface IResumeProps extends IPageData {
+	textKeys: ITextKeys;
+	education: IEducationData;
+	work: IEmployerData;
+	references: IReferenceData;
 }
+export const Resume: React.SFC<IResumeProps> = (props): React.ReactElement<any> => {
+	return (
+		<div
+			className="container accordionWrapper"
+			id="resume"
+			itemScope={true}
+			itemType="http://schema.org/ProfilePage"
+		>
+			<div className="box">
+				<h2 className="title">{props.title.rendered}</h2>
+				<div id="about-content" dangerouslySetInnerHTML={{ __html: props.content.rendered }} />
+			</div>
+		</div>
+	);
+};
 
 // import Employer from '../components/Employer.vue';
 // import Education from '../components/Education.vue';
@@ -34,11 +52,12 @@ export interface IResumeProps extends ILoadedState {
 // 	components: { Employer, Education, Reference }
 // };
 
-export class Resume extends React.Component<IResumeProps, any> {
+{
+	/*export class Resume extends React.Component<IResumeProps, any> {
 	public render() {
 		return (
 			<div>
-				{/* {{this.props.isLoaded && <div className='container accordionWrapper' itemScope={true} itemType='http://schema.org/ProfilePage'>
+				 {{this.props.isLoaded && <div className='container accordionWrapper' itemScope={true} itemType='http://schema.org/ProfilePage'>
 		<div id='summary'>
 			<input id='resumeSummary' name='resumeAccordion' type='radio' checked />
 			<label for='resumeSummary'>{{summary[0].title.rendered}}</label>
@@ -82,8 +101,9 @@ export class Resume extends React.Component<IResumeProps, any> {
 				
 			</article>
 		</div>
-	</div>} */}
+	</div>}
 			</div>
 		);
 	}
+}*/
 }

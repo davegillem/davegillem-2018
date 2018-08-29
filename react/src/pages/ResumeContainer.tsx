@@ -1,10 +1,6 @@
 import * as React from 'react';
 import { DataContext } from 'App';
-// import { Resume } from 'components';
-
-export interface IResumeContainerProps extends ILoadedState {
-	temp?: string;
-}
+import { Resume } from 'components';
 
 // import Employer from '../components/Employer.vue';
 // import Education from '../components/Education.vue';
@@ -34,25 +30,24 @@ export interface IResumeContainerProps extends ILoadedState {
 // 	computed:{},
 // 	components: { Employer, Education, Reference }
 // };
-
-export class ResumeContainer extends React.Component<IResumeContainerProps, any> {
+export class ResumeContainer extends React.Component<ILoadedState, any> {
 	constructor(props: any) {
 		super(props);
 		this.state = {};
 	}
-	public componentDidMount() {
-		// getData(getPages, {}, 'resumeData')
-		// 	.then(({ ...postData }) => {
-		// 		console.log('postData', postData);
-		// 		// this.setState({ applications: postData.applications, loading: false });
-		// 	})
-		// 	// TODO: better error handling. Right now, there is no useful error message. So we return a generic textkeys.
-		// 	.catch((error: any) => {
-		// 		console.log('error');
-		// 		// this.setState({ loading: false, notification: textKeys.genericError });
-		// 	});
-	}
 	public render() {
-		return <DataContext.Consumer>{(dataContext: any) => <>RESUME PAGE</>}</DataContext.Consumer>;
+		return (
+			<DataContext.Consumer>
+				{(dataContext: any) => (
+					<Resume
+						{...dataContext.pages.resume}
+						textKeys={dataContext.textKeys}
+						education={dataContext.education}
+						work={dataContext.work}
+						references={dataContext.references}
+					/>
+				)}
+			</DataContext.Consumer>
+		);
 	}
 }
