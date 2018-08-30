@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { DataContext } from 'App';
 import { HashRouter as Router } from 'react-router-dom';
-import { NavItem, SiteLogo } from 'components';
+import { NavItem, SiteLogo, SocialItem } from 'components';
 // import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 export interface INavbarProps extends ILoadedState {
 	temp?: string;
+	setMenuState: (isActive: boolean) => void;
 }
 export interface INavbarState {
 	burgerActive?: boolean;
@@ -21,8 +22,11 @@ export class Navbar extends React.Component<INavbarProps, INavbarState> {
 
 	public toggleBurger = () => {
 		console.log('Burger Menu Clicked');
-		this.setState({ burgerActive: !this.state.burgerActive });
+		const burgerActive: boolean = !this.state.burgerActive;
+		this.setState({ burgerActive: burgerActive });
+		this.props.setMenuState(burgerActive);
 	};
+
 	public render(): React.ReactNode {
 		return (
 			<nav
@@ -49,17 +53,16 @@ export class Navbar extends React.Component<INavbarProps, INavbarState> {
 									<SiteLogo href="/" id="dgLogo" />
 									<NavItem path="/resume" label={dataContext.textKeys.nav_resume} />
 									<NavItem path="/contact" label={dataContext.textKeys.nav_contact} />
-									{/* <div className='appNavLink socialMenu'>
-									<div className='has-dropdown is-hoverable'>
-										<div className='navbar-dropdown is-boxed'>
-										{this.props.social.map((account, index) => {
-											return(
-												<social key='account.id' {...account}></social>
-											)
-										})}
+
+									<div className="appNavLink socialMenu">
+										<div className="has-dropdown is-hoverable">
+											<div className="navbar-dropdown is-boxed">
+												{dataContext.social.map((link: ISocialAccountData) => {
+													return <SocialItem key={link.slug} {...link} isMobile={true} />;
+												})}
+											</div>
 										</div>
 									</div>
-								</div> */}
 								</div>
 							</Router>
 						</>

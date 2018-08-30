@@ -1,11 +1,26 @@
 import * as React from 'react';
 
-export const SocialItem: React.SFC<ISocialAccountData> = (props: ISocialAccountData): React.ReactElement<any> => {
+interface ISocialItemProps extends ISocialAccountData {
+	isMobile?: boolean;
+}
+
+const getSocialLink = (linkData: ISocialItemProps, classList: string) => {
 	return (
-		<li data-dgtip={props.title.rendered}>
-			<a href={props.url} className={`icon icon-${props.slug}`} target="_blank" rel="noopener noreferrer">
-				{props.title.rendered}
-			</a>
-		</li>
+		<a href={linkData.url} className={classList} target="_blank" rel="noopener noreferrer">
+			{linkData.title.rendered}
+		</a>
+	);
+};
+
+export const SocialItem: React.SFC<ISocialItemProps> = (props: ISocialItemProps): React.ReactElement<any> => {
+	console.log('SOCIAL ITEM', props);
+	return (
+		<>
+			{props.isMobile ? (
+				getSocialLink(props, `navbar-item nestedLink icon-menu-${props.slug}`)
+			) : (
+				<li data-dgtip={props.title.rendered}>{getSocialLink(props, `icon icon-${props.slug}`)}</li>
+			)}
+		</>
 	);
 };

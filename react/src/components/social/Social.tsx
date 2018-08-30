@@ -9,7 +9,7 @@ export const Social: React.SFC<ISocialProps> = (props: ISocialProps): React.Reac
 		<div>
 			<div id="socialLinks" className="showView">
 				<ul className="social-networks square spin-icon">
-					{props.socialItems.map(link => {
+					{props.socialItems.map((link: ISocialAccountData) => {
 						return <SocialItem key={link.slug} {...link} />;
 					})}
 				</ul>

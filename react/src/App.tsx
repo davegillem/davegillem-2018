@@ -17,6 +17,7 @@ startLogger();
 interface IAppState {
 	education: IEducationData[];
 	isLoading: boolean;
+	mobileMenuOpen: boolean;
 	pages: IPage;
 	pageItems: IPageData[];
 	references: IReferenceData[];
@@ -34,6 +35,7 @@ export class App extends React.Component<ILoadedState, IAppState> {
 		this.state = {
 			education: [],
 			isLoading: true,
+			mobileMenuOpen: false,
 			pageItems: [],
 			pages: {},
 			references: [],
@@ -87,6 +89,9 @@ export class App extends React.Component<ILoadedState, IAppState> {
 			console.log(err);
 		}
 	}
+	public setMobileMenu = (menuOpen: boolean) => {
+		this.setState({ mobileMenuOpen: menuOpen });
+	};
 	public render(): React.ReactNode {
 		return (
 			<div id="appMain" itemScope={true} itemType="http://schema.org/WebPage">
@@ -94,8 +99,8 @@ export class App extends React.Component<ILoadedState, IAppState> {
 					<PageLoader />
 				) : (
 					<DataContext.Provider value={this.state}>
-						<Navbar />
-						<MainContainer />
+						<Navbar setMenuState={this.setMobileMenu} />
+						<MainContainer mobileNav={this.state.mobileMenuOpen} />
 					</DataContext.Provider>
 				)}
 			</div>

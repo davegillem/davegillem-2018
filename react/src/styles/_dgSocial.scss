@@ -1,11 +1,13 @@
-#socialLinks{
+#socialLinks {
 	opacity: .2;
 	@include transition(opacity 400ms);
+
 	&:hover,
-	&:active{
-		opacity:1;
+	&:active {
+		opacity: 1;
 	}
 }
+
 .social-networks {
 	margin: 50px 0 35px;
 	padding: 0;
@@ -14,12 +16,15 @@
 
 	li {
 		display: inline-block;
-		&:first-child a:before{
+
+		&:first-child a:before {
 			border-radius: 5px 0 0 5px;
 		}
-		&:last-child a:before{
+
+		&:last-child a:before {
 			border-radius: 0 5px 5px 0;
 		}
+
 		a {
 			display: block;
 			position: relative;
@@ -30,8 +35,9 @@
 			line-height: 0;
 			text-align: center;
 			text-decoration: none;
-	
-			&:before {  // Icon Background
+
+			&:before {
+				// Icon Background
 				content: "";
 				position: absolute;
 				top: 50%;
@@ -44,8 +50,9 @@
 				background-color: $social-icon-bg;
 				@include transition(all 400ms);
 			}
-	
-			&:after { // Icon Symbol
+
+			&:after {
+				// Icon Symbol
 				position: relative;
 				display: block;
 				font-family: 'Font Awesome 5 Free';
@@ -55,37 +62,48 @@
 				text-shadow: 1px 1px 1px darken($social-icon-bg, 10);
 				@include transition(all 0.4s ease-in);
 			}
-	
-			&:hover, &:focus {
+
+			&:hover,
+			&:focus {
 				text-decoration: none;
-				&:after{
+
+				&:after {
 					@include transform(rotateZ(360deg));
 				}
-				&:before{
+
+				&:before {
 					border-radius: 100px;
 					border: 2px solid $social-icon-color;
 				}
 			}
 		}
+
 		// Icon specific styling
-		@each $label, $map in $icons {
+		@each $label,
+		$map in $icons {
 			$iconColor: map-get($map, color);
 			$iconShadow: darken($iconColor, 10);
+
 			a.icon-#{$label} {
 				&:after {
-					font-family: map-get($map, font);//'Font Awesome 5 Brands';//'Font Awesome 5 Free';
+					font-family: map-get($map, font); //'Font Awesome 5 Brands';//'Font Awesome 5 Free';
 					content: map-get($map, icon);
 					color: $social-icon-color;
+					margin-right: 10px;
 				}
-				:before{
+
+				:before {
 					border: 0 solid $iconColor;
 				}
-				&:hover, &:focus{
+
+				&:hover,
+				&:focus {
 					&:before {
 						background: $iconColor;
 						border: 2px solid $iconShadow;
 					}
-					&:after{
+
+					&:after {
 						text-shadow: 2px 2px 3px $iconShadow;
 					}
 				}

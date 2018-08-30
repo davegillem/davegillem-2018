@@ -80,6 +80,7 @@ a:not(.icon) {
 		}
 	}
 
+	&.open,
 	>section.open {
 		@include touch {
 			opacity: 0;
@@ -158,6 +159,7 @@ $map in $icons {
 			font-family: map-get($map, font);
 			content: map-get($map, icon);
 			color: $social-icon-color;
+			margin: 0px 10px 0px 0px;
 		}
 	}
 }
