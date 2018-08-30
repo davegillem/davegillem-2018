@@ -3,7 +3,7 @@ import { Contact } from 'components';
 import { DataContext } from 'App';
 
 export class ContactContainer extends React.Component<ILoadedState, any> {
-	constructor(props: any) {
+	constructor(props: ILoadedState) {
 		super(props);
 		this.state = {};
 	}

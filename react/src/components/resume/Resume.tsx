@@ -7,7 +7,7 @@ interface IResumeProps extends IPageData {
 	work: IEmployerData;
 	references: IReferenceData;
 }
-export const Resume: React.SFC<IResumeProps> = (props): React.ReactElement<any> => {
+export const Resume: React.SFC<IResumeProps> = (props: IResumeProps): React.ReactElement<any> => {
 	return (
 		<div
 			className="container accordionWrapper"

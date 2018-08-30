@@ -1,17 +1,11 @@
 import * as React from 'react';
 
-export interface ISocialItemProps {
-	temp?: string;
-}
-
-export class SocialItem extends React.Component<ISocialItemProps, any> {
-	public render() {
-		return (
-			<div>
-				{/* <a className='navbar-item nestedLink' className=''icon-menu-'+this.props.slug' :href='this.props.url' target='_blank' rel='noopener noreferrer'>
-		{{this.props.title.rendered}}
-	</a> */}
-			</div>
-		);
-	}
-}
+export const SocialItem: React.SFC<ISocialAccountData> = (props: ISocialAccountData): React.ReactElement<any> => {
+	return (
+		<li data-dgtip={props.title.rendered}>
+			<a href={props.url} className={`icon icon-${props.slug}`} target="_blank" rel="noopener noreferrer">
+				{props.title.rendered}
+			</a>
+		</li>
+	);
+};

@@ -31,7 +31,7 @@ import { Resume } from 'components';
 // 	components: { Employer, Education, Reference }
 // };
 export class ResumeContainer extends React.Component<ILoadedState, any> {
-	constructor(props: any) {
+	constructor(props: ILoadedState) {
 		super(props);
 		this.state = {};
 	}

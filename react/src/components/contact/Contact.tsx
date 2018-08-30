@@ -9,7 +9,7 @@ export interface IContactState extends IContactForm {
 }
 
 export class Contact extends React.Component<IContactProps, IContactState> {
-	constructor(props: any) {
+	constructor(props: IContactProps) {
 		super(props);
 		this.state = {
 			contactEmail: '',

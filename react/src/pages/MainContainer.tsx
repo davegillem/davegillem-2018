@@ -1,16 +1,7 @@
 import * as React from 'react';
+import { FooterContainer, SocialContainer } from 'components';
 import { Router } from 'pages';
-import { SocialContainer } from 'components';
-// import { getData, getPages } from 'utilities';
 
-// import * as Router from 'utilities';
-// import { Footer, Navbar } from 'components';
-//
-
-// const footerKeys: any = TEXTKEYS.footerKeys;
-// const globalKeys: any = TEXTKEYS.globalKeys;
-
-// import Social from '../components/Social.vue';
 // export default {
 // 	name: 'app',
 // 	data() {
@@ -77,23 +68,10 @@ import { SocialContainer } from 'components';
 // 	components: { Social }
 // };
 
-export class MainContainer extends React.Component<{}, {}> {
-	// private isLoading: boolean = true;
-	constructor(props: any) {
+export class MainContainer extends React.Component<ILoadedState, {}> {
+	constructor(props: ILoadedState) {
 		super(props);
 		this.state = {};
-	}
-	public componentDidMount() {
-		// getData(getPages, {}, 'mainData')
-		// 	.then(({ ...postData }) => {
-		// 		console.log('postData', postData);
-		// 		// this.setState({ applications: postData.applications, loading: false });
-		// 	})
-		// 	// TODO: better error handling. Right now, there is no useful error message. So we return a generic textkeys.
-		// 	.catch((error: any) => {
-		// 		console.log('error');
-		// 		// this.setState({ loading: false, notification: textKeys.genericError });
-		// 	});
 	}
 	public render(): React.ReactNode {
 		return (
@@ -101,6 +79,7 @@ export class MainContainer extends React.Component<{}, {}> {
 				{/* <section className={'section' + (this.state.burgerActive ? ' open' : '')}> */}
 				<section className="section">
 					<Router />
+
 					{/* <transition name='slide-fade' appear={true} v-on={true}:after-leave='afterLeave' v-on:before-enter='beforeEnter'> */}
 					{/* {this.isLoading && (
 						<div className="loading">
@@ -115,6 +94,7 @@ export class MainContainer extends React.Component<{}, {}> {
 				</div> */}
 					<SocialContainer />
 				</section>
+				<FooterContainer />
 			</div>
 		);
 	}

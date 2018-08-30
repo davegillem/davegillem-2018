@@ -3,7 +3,7 @@ import { DataContext } from 'App';
 import { Home } from 'components';
 
 export class HomeContainer extends React.Component<ILoadedState, any> {
-	constructor(props: any) {
+	constructor(props: ILoadedState) {
 		super(props);
 		this.state = {};
 	}

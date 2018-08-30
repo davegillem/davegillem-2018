@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Footer, Navbar, PageLoader } from 'components';
 import {
 	getData,
 	getEducation,
@@ -11,6 +10,7 @@ import {
 	startLogger
 	} from 'utilities';
 import { MainContainer } from 'pages';
+import { Navbar, PageLoader } from 'components';
 
 startLogger();
 
@@ -28,8 +28,8 @@ interface IAppState {
 
 export const DataContext = React.createContext({} as IAppState);
 
-export class App extends React.Component<{}, IAppState> {
-	constructor(props: any) {
+export class App extends React.Component<ILoadedState, IAppState> {
+	constructor(props: ILoadedState) {
 		super(props);
 		this.state = {
 			education: [],
@@ -55,10 +55,6 @@ export class App extends React.Component<{}, IAppState> {
 		});
 		this.setState({ pages: tempPages, textKeys: tempKeys, ...other, isLoading: false });
 		console.log('RESULT', this.state);
-	};
-	public fixDate = (str: string): string => {
-		const currentYear: string = String(new Date().getFullYear());
-		return str.replace('${CURR_YEAR}', currentYear);
 	};
 	public componentDidMount() {
 		try {
@@ -100,7 +96,6 @@ export class App extends React.Component<{}, IAppState> {
 					<DataContext.Provider value={this.state}>
 						<Navbar />
 						<MainContainer />
-						<Footer footerText={this.fixDate(this.state.textKeys.global_footer)} />
 					</DataContext.Provider>
 				)}
 			</div>
