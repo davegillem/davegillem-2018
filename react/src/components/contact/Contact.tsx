@@ -33,7 +33,7 @@ export class Contact extends React.Component<IContactProps, IContactState> {
 				/>
 				<form
 					id="contact-dg-form"
-					accept-charset="UTF-8"
+					acceptCharset="UTF-8"
 					action="https://usebasin.com/f/60d54aefd589"
 					encType="multipart/form-data"
 					method="POST"

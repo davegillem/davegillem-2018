@@ -58,7 +58,7 @@ export class Navbar extends React.Component<INavbarProps, INavbarState> {
 										<div className="has-dropdown is-hoverable">
 											<div className="navbar-dropdown is-boxed">
 												{dataContext.social.map((link: ISocialAccountData) => {
-													return <SocialItem key={link.slug} {...link} isMobile={true} />;
+													return <SocialItem key={link.id} {...link} isMobile={true} />;
 												})}
 											</div>
 										</div>

@@ -3,7 +3,7 @@ interface IRenderedContent {
 }
 
 interface IPageData {
-	// id: number;
+	id: number;
 	slug: string;
 	title: IRenderedContent;
 	content: IRenderedContent;
@@ -13,7 +13,7 @@ interface IPage {
 }
 
 interface ITextKeyData {
-	// id: number;
+	id: number;
 	description: string;
 	slug: string;
 }
@@ -22,7 +22,7 @@ interface ITextKeys {
 }
 
 interface ISocialAccountData {
-	// id: number;
+	id: number;
 	slug: string;
 	url: string;
 	category: string;
@@ -30,7 +30,8 @@ interface ISocialAccountData {
 }
 
 interface IEmployerData {
-	// id: number;
+	id: number;
+	slug: string;
 	position: string;
 	start_date: string;
 	still_employed: string;
@@ -41,8 +42,13 @@ interface IEmployerData {
 	content: IRenderedContent;
 }
 
+interface IEmployerProps extends IEmployerData {
+	additionalText: string;
+	presentText: string;
+}
+
 interface IEducationData {
-	// id: number;
+	id: number;
 	slug: string;
 	award: string;
 	completion: string;
@@ -54,7 +60,7 @@ interface IEducationData {
 }
 
 interface IReferenceData {
-	// id: number;
+	id: number;
 	slug: string;
 	date_provided: string;
 	job_title: string;

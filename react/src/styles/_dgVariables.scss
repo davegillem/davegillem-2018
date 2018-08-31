@@ -10,7 +10,7 @@ $transparent: rgba(0, 0, 0, 0);
 $contentHeading:#efefef;
 $wrapQuotes: lighten($soft-bg, 50);
 // Logo
-$loadingLogoFill: #000; //hsl(0, 0%, 4%); //$soft-bg;
+$loadingLogoFill: $soft-bg;
 $loadingLogoStroke: $loadingLogoFill;
 // Nav
 $logo-color: $white;

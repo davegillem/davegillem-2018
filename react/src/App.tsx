@@ -17,6 +17,7 @@ startLogger();
 interface IAppState {
 	education: IEducationData[];
 	isLoading: boolean;
+	loaderAnimating: boolean;
 	mobileMenuOpen: boolean;
 	pages: IPage;
 	pageItems: IPageData[];
@@ -30,11 +31,13 @@ interface IAppState {
 export const DataContext = React.createContext({} as IAppState);
 
 export class App extends React.Component<ILoadedState, IAppState> {
+	public loadingID: string = 'loadingLogo';
 	constructor(props: ILoadedState) {
 		super(props);
 		this.state = {
 			education: [],
 			isLoading: true,
+			loaderAnimating: false,
 			mobileMenuOpen: false,
 			pageItems: [],
 			pages: {},
@@ -56,9 +59,29 @@ export class App extends React.Component<ILoadedState, IAppState> {
 			tempKeys[key.slug] = key.description;
 		});
 		this.setState({ pages: tempPages, textKeys: tempKeys, ...other, isLoading: false });
-		console.log('RESULT', this.state);
+	};
+	public whichAnimationEvent = (): string => {
+		const el: any = document.getElementById(this.loadingID);
+		const animations: object = {
+			animation: 'animationend',
+			MozAnimation: 'animationend',
+			OAnimation: 'oAnimationEnd',
+			WebkitAnimation: 'webkitAnimationEnd'
+		};
+		for (const t in animations) {
+			if (el.style[t] !== undefined) {
+				return animations[t];
+			}
+		}
+		return '';
 	};
 	public componentDidMount() {
+		// check to see if logo is done animating so it doesn't cut off
+		const el: any = document.getElementById(this.loadingID);
+		const animationEvent = this.whichAnimationEvent();
+		el.addEventListener(animationEvent, () => {
+			this.setState({ loaderAnimating: false });
+		});
 		try {
 			Promise.all<
 				Promise<IPageData[]>,
@@ -95,8 +118,8 @@ export class App extends React.Component<ILoadedState, IAppState> {
 	public render(): React.ReactNode {
 		return (
 			<div id="appMain" itemScope={true} itemType="http://schema.org/WebPage">
-				{this.state.isLoading ? (
-					<PageLoader />
+				{this.state.isLoading || this.state.loaderAnimating ? (
+					<PageLoader loadingID={this.loadingID} />
 				) : (
 					<DataContext.Provider value={this.state}>
 						<Navbar setMenuState={this.setMobileMenu} />

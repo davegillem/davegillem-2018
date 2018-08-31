@@ -13,7 +13,6 @@ const getSocialLink = (linkData: ISocialItemProps, classList: string) => {
 };
 
 export const SocialItem: React.SFC<ISocialItemProps> = (props: ISocialItemProps): React.ReactElement<any> => {
-	console.log('SOCIAL ITEM', props);
 	return (
 		<>
 			{props.isMobile ? (

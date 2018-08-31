@@ -26,10 +26,14 @@
 	}
 }
 
-#loadingLogo path {
-	fill: $loadingLogoFill;
-	stroke: $loadingLogoFill;
-	animation: draw 4s;
+#loadingLogo {
+	position: relative;
+	z-index: 1000;
+	path {
+		fill: $loadingLogoFill;
+		stroke: $loadingLogoFill;
+		animation: draw 4s;
+	}
 }
 
 .loading {

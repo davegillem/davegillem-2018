@@ -89,7 +89,6 @@
 					font-family: map-get($map, font); //'Font Awesome 5 Brands';//'Font Awesome 5 Free';
 					content: map-get($map, icon);
 					color: $social-icon-color;
-					margin-right: 10px;
 				}
 
 				:before {
