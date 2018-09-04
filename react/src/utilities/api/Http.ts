@@ -77,7 +77,7 @@ export const getData = (api: IDataMethod, data: IKeyValuePair = {}, cacheRef?: s
 	console.log('CALLING - ', endpoint);
 	console.log('PASSING - ', data);
 	console.groupEnd();
-	$htmlElement.classList.add('loading');
+	$htmlElement.classList.add('dataLoading');
 	if (cacheRef && dataCache[cacheRef]) {
 		return dataCache[cacheRef];
 	}
@@ -91,7 +91,7 @@ export const getData = (api: IDataMethod, data: IKeyValuePair = {}, cacheRef?: s
 		.then(checkStatus)
 		.then(parseJSON)
 		.then(response => {
-			$htmlElement.classList.remove('loading');
+			$htmlElement.classList.remove('dataLoading');
 			console.group('\t%cRESPONSE FOR : ' + api.endpoint, LogStyle.SUCCESS);
 			console.log('\tDATA FOR ' + api.endpoint + ' : ', response || 'API RETURNS NO DATA HERE');
 			console.groupEnd();

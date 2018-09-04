@@ -11,6 +11,7 @@ body {
 	height: 100vh;
 	width: 100vw;
 	font-family: 'Roboto Condensed', sans-serif;
+
 	&:before {
 		content: '';
 		position: absolute;
@@ -34,11 +35,13 @@ h6 {
 }
 
 a:not(.icon) {
+
 	&,
 	&:hover,
 	&:active {
 		color: $white;
 	}
+
 	&:hover,
 	&:active {
 		border-bottom: 1px dotted $white;
@@ -46,6 +49,7 @@ a:not(.icon) {
 }
 
 #app {
+
 	.footer,
 	section,
 	nav.navbar,
@@ -67,12 +71,16 @@ a:not(.icon) {
 	right: 0;
 	bottom: 0;
 	overflow-y: scroll;
+
 	@include touch {
 		top: 95px;
+
 		>section {
 			padding-top: 0;
 		}
 	}
+
+	&.open,
 	>section.open {
 		@include touch {
 			opacity: 0;
@@ -102,17 +110,30 @@ a:not(.icon) {
 }
 
 .fade-enter-active {
-	@include animation('fadein 1.5s');
+	//@include animation('fadein 1.5s ease-in .5s');
+	@include animation('fadein 1.5s ease-in');
 }
 
-.fade-leave-active {
-	@include animation('fadeout .5s');
+.fade-leave-active,
+.fade-exit-active {
+	@include animation('fadeout .5s ease-out');
 }
+
+
+.fade-enter {
+	opacity: 0.01;
+}
+
+.fade-exit {
+	opacity: 1;
+}
+
 
 @include keyframes(fadein) {
 	from {
 		opacity: 0;
 	}
+
 	to {
 		opacity: 1;
 	}
@@ -122,6 +143,7 @@ a:not(.icon) {
 	from {
 		opacity: 1;
 	}
+
 	to {
 		opacity: 0;
 	}
@@ -132,11 +154,13 @@ a:not(.icon) {
 $map in $icons {
 	$iconColor: map-get($map, color);
 	$iconShadow: darken($iconColor, 10);
+
 	a.icon-menu-#{$label} {
 		&:before {
 			font-family: map-get($map, font);
 			content: map-get($map, icon);
 			color: $social-icon-color;
+			margin: 0px 10px 0px 0px;
 		}
 	}
 }

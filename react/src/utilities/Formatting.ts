@@ -12,9 +12,9 @@ export const humanizeDate = (value: string): string | undefined => {
 		return;
 	}
 };
-export const formatDate = (value: string, clean?: string): string | undefined => {
+export const formatDate = (value: string, clean?: boolean): string | undefined => {
 	if (value.length) {
-		const cleanDate: string | Date = clean === 'true' ? cleanWPdate(value) : value;
+		const cleanDate: string | Date = clean ? cleanWPdate(value) : value;
 		return moment(cleanDate).format('MM/DD/YYYY');
 	} else {
 		return;
