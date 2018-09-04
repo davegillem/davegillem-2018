@@ -4,3 +4,4 @@ declare module '*.svg' {
 }
 declare module 'react-router-transition';
 declare module 'react-transition-group';
+declare module 'ree-validate';

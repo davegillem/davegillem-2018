@@ -106,6 +106,7 @@ export class App extends React.Component<ILoadedState, IAppState> {
 					textKeyData: textKeyData,
 					work: work
 				};
+				console.log('GET DATA', wpData);
 				this.processData(wpData);
 			});
 		} catch (err) {

@@ -8,20 +8,20 @@ import { BASE_API_PATH, getApiCall } from './Http';
  * @param optional object that contains key value pairs to override the default method and headers that should be used in the api call
  */
 export const getPages: IDataMethod = getApiCall(
-	`${BASE_API_PATH}pages?slug=about,home,resume,contact&fields=id,slug,title.rendered,content.rendered`
+	`${BASE_API_PATH}pages?slug=about,home,resume,contact&fields=slug,id,title.rendered,content.rendered`
 );
 export const getTextKeys: IDataMethod = getApiCall(
-	`${BASE_API_PATH}categories?parent=3&fields=slug,description,id&per_page=50`
+	`${BASE_API_PATH}categories?parent=3&fields=slug,id,description&per_page=50`
 );
 export const getSocial: IDataMethod = getApiCall(
-	`${BASE_API_PATH}social-accounts?fields=title.rendered,id,url,category,slug&per_page=50`
+	`${BASE_API_PATH}social-accounts?fields=title.rendered,url,id,category,slug&per_page=50`
 );
 export const getEmployers: IDataMethod = getApiCall(
-	`${BASE_API_PATH}employers?fields=slug,id,title.rendered,content.rendered,position,start_date,still_employed,end_date,location,additional&per_page=50`
+	`${BASE_API_PATH}employers?fields=slug,title.rendered,id,content.rendered,position,start_date,still_employed,end_date,location,additional&per_page=50`
 );
 export const getEducation: IDataMethod = getApiCall(
-	`${BASE_API_PATH}education?fields=slug,title.rendered,content.rendered,id,provider,location,award,completion,course_type&per_page=50`
+	`${BASE_API_PATH}education?fields=slug,id,title.rendered,content.rendered,provider,location,award,completion,course_type&per_page=50`
 );
 export const getReferences: IDataMethod = getApiCall(
-	`${BASE_API_PATH}reference?per_page=50&fields=title.rendered,content.rendered,id,job_title,date_provided,slug`
+	`${BASE_API_PATH}reference?per_page=50&fields=title.rendered,content.rendered,job_title,id,date_provided,slug`
 );

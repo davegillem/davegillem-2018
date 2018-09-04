@@ -1,10 +1,8 @@
-interface IContactErrors {
-	errorEmail: boolean;
-	errorMessage: boolean;
-	errorName: boolean;
-}
-interface IContactForm extends IContactErrors {
+interface IContactFields {
 	contactEmail: string;
 	contactMsg: string;
 	contactName: string;
+}
+interface IContactForm extends IContactFields {
+	errors: any;
 }
