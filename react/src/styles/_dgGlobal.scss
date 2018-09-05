@@ -109,24 +109,46 @@ a:not(.icon) {
 	@include transition(none);
 }
 
-.fade-enter-active {
-	//@include animation('fadein 1.5s ease-in .5s');
-	@include animation('fadein 1.5s ease-in');
+.fade-enter-done {
+	//visibility: visible;
+	//max-height: 3000px;
+	//transition-delay: .7s;
+	//opacity: 0.01;
+	//@include transition('max-height 0s linear .5s, visibility 0s linear .5s');
+	@include animation('fadein .5s ease-in');
 }
 
 .fade-leave-active,
 .fade-exit-active {
-	@include animation('fadeout .5s ease-out');
+	//@include animation('fadeout .3s ease-out');
+	display: none;
 }
 
+
+// .fade-enter-active {
+// 	//.fade-enter {
+// 	// visibility: hidden;
+// 	// opacity: 0;
+// 	// max-height: 0;
+// 	//@include transition('max-height 0s linear 0s');
+// }
 
 .fade-enter {
-	opacity: 0.01;
+	//visibility: hidden;
+	opacity: 0;
+	//max-height: 0;
+	//@include transition('max-height 0s linear 0s');
+	//@include transition('max-height 0s linear 0s, visibility 0s linear 0s');
 }
 
-.fade-exit {
-	opacity: 1;
-}
+// .fade-exit {
+
+// 	//opacity: 1;
+// 	// visibility: hidden;
+// 	// max-height: 0;
+// 	// @include transition('max-height 0s linear .5s, visibility 0s linear .5s');
+// 	// @include animation('fadeout .5s ease-out');
+// }
 
 
 @include keyframes(fadein) {
