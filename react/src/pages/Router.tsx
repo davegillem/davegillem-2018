@@ -13,8 +13,8 @@ export const Router: React.StatelessComponent<{}> = props => (
 	<HashRouter>
 		<Route
 			render={({ location }) => (
-				<TransitionGroup appear={true}>
-					<CSSTransition key={location.pathname} classNames="fade" timeout={transTimeout} appear={true}>
+				<TransitionGroup appear={false}>
+					<CSSTransition key={location.pathname} classNames="fade" timeout={transTimeout} appear={false}>
 						<Switch location={location}>
 							<Route path="/" exact={true} component={HomeContainer} />
 							<Route path="/about" exact={true} component={AboutContainer} />
