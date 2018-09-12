@@ -8,6 +8,7 @@
 		"@types/react": "16.4.11"
 	},
 	"dependencies": {
+		"@types/chalk": "^2.2.0",
 		"@types/classnames": "^2.2.6",
 		"@types/react-transition-group": "^2.0.13",
 		"@types/typescript": "^2.0.0",
@@ -23,6 +24,7 @@
 		"bulma": "^0.7.1",
 		"bulma-start": "^0.0.2",
 		"case-sensitive-paths-webpack-plugin": "2.1.1",
+		"chalk": "^2.4.1",
 		"classnames": "^2.2.6",
 		"copy-webpack-plugin": "^4.5.2",
 		"css-loader": "0.28.7",
@@ -102,7 +104,6 @@
 		"@types/prettier": "^1.13.2",
 		"@types/prop-types": "^15.5.5",
 		"@types/query-string": "^6.1.0",
-		"@types/react": "^16.4.11",
 		"@types/react-dom": "^16.0.7",
 		"@types/react-router-dom": "^4.3.0",
 		"@types/sw-precache-webpack-plugin": "^0.11.0",

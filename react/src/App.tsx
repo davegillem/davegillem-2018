@@ -37,7 +37,7 @@ export class App extends React.Component<ILoadedState, IAppState> {
 		this.state = {
 			education: [],
 			isLoading: true,
-			loaderAnimating: false,
+			loaderAnimating: true,
 			mobileMenuOpen: false,
 			pageItems: [],
 			pages: {},

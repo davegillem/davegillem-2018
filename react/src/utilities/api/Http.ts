@@ -3,7 +3,7 @@ import { checkHTTPStatus } from './StatusCodes';
 
 const dataCache: any = {};
 const $htmlElement: HTMLElement = document.getElementsByTagName('html')[0];
-export const BASE_API_PATH = 'http://api.davegillem.com/wp-json/wp/v2/';
+export const BASE_API_PATH = 'data/'; // 'http://davegillem.com/data/'; // 'http://api.davegillem.com/wp-json/wp/v2/';
 export const DEFAULT_HEADERS: IFetchHeader = {
 	'Content-Type': 'application/json; charset=utf-8;'
 };

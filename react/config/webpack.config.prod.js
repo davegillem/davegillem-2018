@@ -262,6 +262,10 @@ module.exports = baseConfig.merge({
 			{
 				from: 'src/assets',
 				to: './images'
+			},
+			{
+				from: 'src/data',
+				to: './data'
 			}
 		])
 	]

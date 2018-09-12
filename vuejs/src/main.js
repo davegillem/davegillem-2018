@@ -114,41 +114,41 @@ new Vue({
 			}
 		},
 		getWordpressData() {
-			const wpURL = "http://api.davegillem.com/wp-json/wp/v2/";
+			const wpURL = "http://davegillem.com/data"; // "http://api.davegillem.com/wp-json/wp/v2/";
 			var self = this;
 
 			function getPosts() {
 				return axios.get(
-					wpURL +
-					"pages?slug=about,home,resume&fields=slug,title.rendered,content.rendered"
+					`${wpURL}/pages.json`
+					//"pages?slug=about,home,resume&fields=slug,title.rendered,content.rendered"
 				);
 			}
 
 			function getSocial() {
 				return axios.get(
-					wpURL +
-					"social-accounts?fields=title.rendered,url,category,slug"
+					`${wpURL}/social-accounts.json`
+					//"social-accounts?fields=title.rendered,url,category,slug"
 				);
 			}
 
 			function getEmployers() {
 				return axios.get(
-					wpURL +
-					"employers?fields=title.rendered,content.rendered,position,start_date,still_employed,end_date,location,additional"
+					`${wpURL}/employers.json`
+					//"employers?fields=title.rendered,content.rendered,position,start_date,still_employed,end_date,location,additional"
 				);
 			}
 
 			function getEducation() {
 				return axios.get(
-					wpURL +
-					"education?fields=title.rendered,content.rendered,provider,location,award,completion,course_type,slug"
+					`${wpURL}/education.json`
+					//"education?fields=title.rendered,content.rendered,provider,location,award,completion,course_type,slug"
 				);
 			}
 
 			function getReferences() {
 				return axios.get(
-					wpURL +
-					"reference?fields=title.rendered,content.rendered,job_title,date_provided,slug"
+					`${wpURL}/reference.json`
+					//"reference?fields=title.rendered,content.rendered,job_title,date_provided,slug"
 				);
 			}
 

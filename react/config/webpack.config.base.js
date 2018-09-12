@@ -6,7 +6,7 @@ const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const paths = require('./paths');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
-//const SizePlugin = require('size-plugin');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // style files regexes
 const cssRegex = /\.css$/;
@@ -105,7 +105,18 @@ const defaults = {
 					NODE_ENV: JSON.stringify(process.env.NODE_ENV)
 				}
 			})
-			//new SizePlugin()
+			// new CopyWebpackPlugin([
+			// 	//{ from: 'src/index.html', to: './index.html' },
+			// 	//{from:'./data', to:'./data'}, // Not using Behance JSON right now
+			// 	{
+			// 		from: 'src/assets',
+			// 		to: './images'
+			// 	},
+			// 	{
+			// 		from: 'src/data',
+			// 		to: './data'
+			// 	}
+			// ])
 		]
 	},
 	module: {

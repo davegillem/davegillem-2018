@@ -12,6 +12,7 @@ const paths = require('./paths');
 const publicPath = '/';
 const publicUrl = '';
 const env = getClientEnvironment(publicUrl);
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = baseConfig.merge({
 	devtool: 'cheap-module-source-map',
@@ -21,7 +22,8 @@ module.exports = baseConfig.merge({
 		filename: 'js/bundle.js',
 		chunkFilename: 'js/[name].chunk.js',
 		publicPath: publicPath,
-		devtoolModuleFilenameTemplate: info => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/')
+		devtoolModuleFilenameTemplate: info => path.resolve(info.absoluteResourcePath)
+			.replace(/\\/g, '/')
 	},
 	module: {
 		strictExportPresence: true
@@ -60,7 +62,7 @@ module.exports = baseConfig.merge({
 		// having to parse `index.html`.
 		new ManifestPlugin({
 			fileName: 'asset-manifest.json',
-			publicPath: publicPath,
+			publicPath: publicPath
 		}),
 		// Perform type checking and linting in a separate process to speed up compilation
 		new ForkTsCheckerWebpackPlugin({
@@ -68,7 +70,19 @@ module.exports = baseConfig.merge({
 			watch: paths.appSrc,
 			tsconfig: paths.appTsConfig,
 			tslint: paths.appTsLint
-		})
+		}),
+		new CopyWebpackPlugin([
+			//{ from: 'src/index.html', to: './index.html' },
+			//{from:'./data', to:'./data'}, // Not using Behance JSON right now
+			{
+				from: 'src/assets',
+				to: './images'
+			},
+			{
+				from: 'src/data',
+				to: './data'
+			}
+		])
 	],
 	// Turn off performance hints during development because we don't do any
 	// splitting or minification in interest of speed. These warnings become
