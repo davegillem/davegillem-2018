@@ -3,5 +3,5 @@ interface IKeyValuePair {
 }
 
 interface ILoadedState {
-	isLoaded: boolean;
+	isLoaded?: boolean;
 }

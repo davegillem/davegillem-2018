@@ -80,6 +80,7 @@
 		],
 		"indent": 0,
 		"init-declarations": 0,
+		"jsx-a11y/href-no-hash": [0],
 		"key-spacing": 0,
 		"keyword-spacing": 1,
 		"linebreak-style": 0,

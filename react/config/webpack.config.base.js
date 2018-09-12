@@ -6,6 +6,7 @@ const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const paths = require('./paths');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // style files regexes
 const cssRegex = /\.css$/;
@@ -19,7 +20,7 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
 		require.resolve('style-loader'),
 		{
 			loader: require.resolve('css-loader'),
-			options: cssOptions,
+			options: cssOptions
 		},
 		{
 			// Options for PostCSS as we reference these options twice
@@ -34,11 +35,11 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
 				plugins: () => [
 					require('postcss-flexbugs-fixes'),
 					autoprefixer({
-						flexbox: 'no-2009',
-					}),
-				],
-			},
-		},
+						flexbox: 'no-2009'
+					})
+				]
+			}
+		}
 	];
 	if (preProcessor) {
 		loaders.push(preProcessor);
@@ -104,6 +105,18 @@ const defaults = {
 					NODE_ENV: JSON.stringify(process.env.NODE_ENV)
 				}
 			})
+			// new CopyWebpackPlugin([
+			// 	//{ from: 'src/index.html', to: './index.html' },
+			// 	//{from:'./data', to:'./data'}, // Not using Behance JSON right now
+			// 	{
+			// 		from: 'src/assets',
+			// 		to: './images'
+			// 	},
+			// 	{
+			// 		from: 'src/data',
+			// 		to: './data'
+			// 	}
+			// ])
 		]
 	},
 	module: {
@@ -138,7 +151,7 @@ const defaults = {
 						options: {
 							limit: 10000,
 							name: 'images/[name].[ext]'
-						},
+						}
 					},
 					// Process application JS with Babel.
 					// The preset includes JSX, Flow, and some ESnext features.
@@ -153,15 +166,15 @@ const defaults = {
 								loader: require.resolve('thread-loader'),
 								options: {
 									poolTimeout: Infinity // keep workers alive for more effective watch mode
-								},
+								}
 							},
 							{
 								loader: require.resolve('babel-loader'),
 								options: {
 									compact: true
 								}
-							},
-						],
+							}
+						]
 					},
 					// Compile .tsx
 					{
@@ -187,7 +200,7 @@ const defaults = {
 						exclude: cssModuleRegex,
 						use: getStyleLoaders({
 							importLoaders: 1
-						}),
+						})
 					},
 					// Opt-in support for SASS (using .scss or .sass extensions).
 					// Chains the sass-loader with the css-loader and the style-loader
@@ -208,12 +221,12 @@ const defaults = {
 									'node_modules/'
 								]
 							}
-						}),
+						})
 					},
 					// The GraphQL loader preprocesses GraphQL queries in .graphql files.
 					{
 						test: /\.(graphql)$/,
-						loader: 'graphql-tag/loader',
+						loader: 'graphql-tag/loader'
 					},
 					// "file" loader makes sure those assets get served by WebpackDevServer.
 					// When you `import` an asset, you get its (virtual) filename.
@@ -229,13 +242,13 @@ const defaults = {
 						loader: require.resolve('file-loader'),
 						options: {
 							name: 'images/[name].[ext]'
-						},
-					},
-				],
-			},
+						}
+					}
+				]
+			}
 			// ** STOP ** Are you adding a new loader?
 			// Make sure to add the new loader(s) before the "file" loader.
-		],
+		]
 	},
 	// Some libraries import Node modules but don't use them in the browser.
 	// Tell Webpack to provide empty mocks for them so importing them works.
@@ -248,7 +261,7 @@ const defaults = {
 	},
 	// Turn off performance processing because we utilize
 	// our own hints via the FileSizeReporter
-	performance: false,
+	performance: false
 };
 module.exports.defaults = defaults;
 module.exports.extend = function merge(config) {
