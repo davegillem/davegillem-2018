@@ -6,7 +6,7 @@ import {
 	ResumeContainer
 	} from 'pages';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
 const transTimeout: number = 500;
 
 export const Router: React.StatelessComponent<{}> = props => (
@@ -20,7 +20,7 @@ export const Router: React.StatelessComponent<{}> = props => (
 							<Route path="/about" exact={true} component={AboutContainer} />
 							<Route path="/resume" exact={true} component={ResumeContainer} />
 							<Route path="/contact" exact={true} component={ContactContainer} />
-							<Route component={HomeContainer} />
+							<Redirect to="/" />
 						</Switch>
 					</CSSTransition>
 				</TransitionGroup>

@@ -114,7 +114,7 @@ new Vue({
 			}
 		},
 		getWordpressData() {
-			const wpURL = "http://davegillem.com/data"; // "http://api.davegillem.com/wp-json/wp/v2/";
+			const wpURL = "https://davegillem.com/data"; // "http://api.davegillem.com/wp-json/wp/v2/";
 			var self = this;
 
 			function getPosts() {
