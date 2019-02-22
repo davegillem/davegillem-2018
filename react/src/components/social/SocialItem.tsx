@@ -6,7 +6,7 @@ interface ISocialItemProps extends ISocialAccountData {
 
 const getSocialLink = (linkData: ISocialItemProps, classList: string) => {
 	return (
-		<a href={linkData.url} className={classList} target="_blank" rel="noopener noreferrer">
+		<a href={linkData.url} className={classList} target='_blank' rel='noopener noreferrer'>
 			{linkData.title.rendered}
 		</a>
 	);

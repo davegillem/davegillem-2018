@@ -14,11 +14,11 @@ export class MainContainer extends React.Component<IMainContainerProps, {}> {
 	public render(): React.ReactNode {
 		return (
 			<div
-				id="main-content"
+				id='main-content'
 				className={'content-wrapper' + (this.props.mobileNav ? ' open' : '')}
-				itemProp="mainContentOfPage"
+				itemProp='mainContentOfPage'
 			>
-				<section className="section">
+				<section className='section'>
 					<Router />
 					<SocialContainer />
 				</section>

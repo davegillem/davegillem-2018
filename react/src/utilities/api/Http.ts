@@ -5,11 +5,11 @@ const dataCache: any = {};
 const $htmlElement: HTMLElement = document.getElementsByTagName('html')[0];
 export const BASE_API_PATH = 'data/'; // 'http://davegillem.com/data/'; // 'http://api.davegillem.com/wp-json/wp/v2/';
 export const DEFAULT_HEADERS: IFetchHeader = {
-	'Content-Type': 'application/json; charset=utf-8;'
+	'Content-Type': 'application/json; charset=utf-8;',
 };
 
 export const getApiHeaders = (headers: IFetchHeader = {}): IFetchHeader => {
-	return Object.assign({}, DEFAULT_HEADERS, headers);
+	return { ...DEFAULT_HEADERS, ...headers };
 };
 
 /**
@@ -21,7 +21,7 @@ export const getApiCall = (endpoint: string, optional: any = {}): IDataMethod =>
 	return {
 		endpoint: endpoint,
 		headers: getApiHeaders(optional.headers) || DEFAULT_HEADERS,
-		method: optional.method || 'GET'
+		method: optional.method || 'GET',
 	};
 };
 
@@ -86,11 +86,11 @@ export const getData = (api: IDataMethod, data: IKeyValuePair = {}, cacheRef?: s
 		body: hasBody ? null : JSON.stringify(data),
 		cache: 'no-cache',
 		headers: headers,
-		method: method
+		method: method,
 	})
 		.then(checkStatus)
 		.then(parseJSON)
-		.then(response => {
+		.then((response) => {
 			$htmlElement.classList.remove('dataLoading');
 			console.group('\t%cRESPONSE FOR : ' + api.endpoint, LogStyle.SUCCESS);
 			console.log('\tDATA FOR ' + api.endpoint + ' : ', response || 'API RETURNS NO DATA HERE');
@@ -114,7 +114,7 @@ export const getData = (api: IDataMethod, data: IKeyValuePair = {}, cacheRef?: s
 const buildEndpoint = (endpoint: string, params: IKeyValuePair, buildQueryString?: boolean): string => {
 	let apiCall: string = endpoint;
 	const result: string[] = [];
-	Object.keys(params).map(key => {
+	Object.keys(params).map((key) => {
 		const propVar = `{${key}}`,
 			hasVar = apiCall.indexOf(propVar) >= 0;
 		apiCall = apiCall.replace(propVar, encodeURIComponent(params[key]));

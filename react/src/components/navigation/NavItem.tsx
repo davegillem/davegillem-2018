@@ -8,8 +8,8 @@ interface INavItemProps {
 // document.getElementById("main-content").scrollTop = 0;
 export const NavItem: React.SFC<INavItemProps> = (props: INavItemProps): React.ReactElement<any> => {
 	return (
-		<div className="appNavLink">
-			<NavLink to={props.path} exact={true} className="" activeClassName="is-active" data-hover={props.label}>
+		<div className='appNavLink'>
+			<NavLink to={props.path} exact={true} className='' activeClassName='is-active' data-hover={props.label}>
 				{props.label}
 			</NavLink>
 		</div>

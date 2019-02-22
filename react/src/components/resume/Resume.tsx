@@ -12,40 +12,40 @@ export class Resume extends React.Component<IResumeProps, any> {
 	constructor(props: IResumeProps) {
 		super(props);
 		this.state = {
-			selectedItem: 'resumeSummary'
+			selectedItem: 'resumeSummary',
 		};
 	}
 	public handleOptionChange = (e: any) => {
 		this.setState({
-			selectedItem: e.target.id
+			selectedItem: e.target.id,
 		});
-	};
+	}
 	public render() {
 		return (
 			<div>
-				<div className="container accordionWrapper" itemScope={true} itemType="http://schema.org/ProfilePage">
-					<div id="summary">
+				<div className='container accordionWrapper' itemScope={true} itemType='http://schema.org/ProfilePage'>
+					<div id='summary'>
 						<input
 							checked={this.state.selectedItem === 'resumeSummary'}
-							id="resumeSummary"
-							name="resumeAccordion"
+							id='resumeSummary'
+							name='resumeAccordion'
 							onChange={this.handleOptionChange}
-							type="radio"
+							type='radio'
 						/>
-						<label htmlFor="resumeSummary">{this.props.title.rendered}</label>
-						<article className="smallPane">
+						<label htmlFor='resumeSummary'>{this.props.title.rendered}</label>
+						<article className='smallPane'>
 							<p dangerouslySetInnerHTML={{ __html: this.props.content.rendered }} />
 						</article>
 					</div>
-					<div id="employerList">
+					<div id='employerList'>
 						<input
 							checked={this.state.selectedItem === 'resumework'}
-							id="resumework"
-							name="resumeAccordion"
+							id='resumework'
+							name='resumeAccordion'
 							onChange={this.handleOptionChange}
-							type="radio"
+							type='radio'
 						/>
-						<label htmlFor="resumework">work</label>
+						<label htmlFor='resumework'>work</label>
 						<article>
 							{console.log('PROPS', this.props, this.props.work)}
 							{this.props.work.map((employer: IEmployerData) => {
@@ -60,29 +60,29 @@ export class Resume extends React.Component<IResumeProps, any> {
 							})}
 						</article>
 					</div>
-					<div id="educationList">
+					<div id='educationList'>
 						<input
-							id="resumeEducation"
-							name="resumeAccordion"
-							type="radio"
+							id='resumeEducation'
+							name='resumeAccordion'
+							type='radio'
 							onChange={this.handleOptionChange}
 						/>
-						<label htmlFor="resumeEducation">Education / Certifications</label>
+						<label htmlFor='resumeEducation'>Education / Certifications</label>
 						<article>
 							{this.props.education.map((cert: IEducationData) => {
 								return <Education key={cert.id} {...cert} />;
 							})}
 						</article>
 					</div>
-					<div id="referenceList">
+					<div id='referenceList'>
 						<input
 							checked={this.state.selectedItem === 'resumeReferences'}
-							id="resumeReferences"
-							name="resumeAccordion"
+							id='resumeReferences'
+							name='resumeAccordion'
 							onChange={this.handleOptionChange}
-							type="radio"
+							type='radio'
 						/>
-						<label htmlFor="resumeReferences">References</label>
+						<label htmlFor='resumeReferences'>References</label>
 						<article>
 							{this.props.references.map((ref: IReferenceData) => {
 								return <Reference key={ref.id} {...ref} />;

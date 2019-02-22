@@ -27,7 +27,7 @@ export const DEBUG: boolean = getUrlVar('debug') === 'true' || isDevelopment;
 
 export const startLogger = () => {
 	// disable console if debug !== true and fixes console availability in IE
-	(a => {
+	((a) => {
 		function b() {} // tslint:disable-line
 		for (
 			let c = 'assert,clear,count,debug,dir,dirxml,error,exception,group,groupCollapsed,groupEnd,info,log,markTimeline,profile,profileEnd,table,time,timestamp,timeEnd,trace,warn'.split(

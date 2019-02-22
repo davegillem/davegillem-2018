@@ -52,14 +52,15 @@ export class App extends React.Component<ILoadedState, IAppState> {
 		const tempPages: IPage = {};
 		const tempKeys: ITextKeys = {};
 		const { pageItems, textKeyData, ...other }: IAppState = wpData;
-		pageItems.map(page => {
+
+		pageItems.map((page) => {
 			tempPages[page.slug] = page;
 		});
-		textKeyData.map(key => {
+		textKeyData.map((key) => {
 			tempKeys[key.slug] = key.description;
 		});
 		this.setState({ pages: tempPages, textKeys: tempKeys, ...other, isLoading: false });
-	};
+	}
 	public whichAnimationEvent = (): string => {
 		const el: any = document.getElementById(this.loadingID);
 		const animations: object = {
@@ -68,17 +69,19 @@ export class App extends React.Component<ILoadedState, IAppState> {
 			OAnimation: 'oAnimationEnd',
 			WebkitAnimation: 'webkitAnimationEnd'
 		};
+
 		for (const t in animations) {
 			if (el.style[t] !== undefined) {
 				return animations[t];
 			}
 		}
 		return '';
-	};
+	}
 	public componentDidMount() {
 		// check to see if logo is done animating so it doesn't cut off
 		const el: any = document.getElementById(this.loadingID);
 		const animationEvent = this.whichAnimationEvent();
+
 		el.addEventListener(animationEvent, () => {
 			this.setState({ loaderAnimating: false });
 		});
@@ -89,8 +92,7 @@ export class App extends React.Component<ILoadedState, IAppState> {
 				Promise<ISocialAccountData[]>,
 				Promise<IEmployerData[]>,
 				Promise<IEducationData[]>,
-				Promise<IReferenceData[]>
-			>([
+				Promise<IReferenceData[]>([
 				getData(getPages),
 				getData(getTextKeys),
 				getData(getSocial),
@@ -106,6 +108,7 @@ export class App extends React.Component<ILoadedState, IAppState> {
 					textKeyData: textKeyData,
 					work: work
 				};
+
 				console.log('GET DATA', wpData);
 				this.processData(wpData);
 			});
@@ -115,19 +118,27 @@ export class App extends React.Component<ILoadedState, IAppState> {
 	}
 	public setMobileMenu = (menuOpen: boolean) => {
 		this.setState({ mobileMenuOpen: menuOpen });
-	};
+	}
 	public render(): React.ReactNode {
 		return (
-			<div id="appMain" itemScope={true} itemType="http://schema.org/WebPage">
+			<div id='appMain' itemScope={true} itemType='http://schema.org/WebPage'>
 				{this.state.isLoading || this.state.loaderAnimating ? (
 					<PageLoader loadingID={this.loadingID} />
 				) : (
-					<DataContext.Provider value={this.state}>
-						<Navbar setMenuState={this.setMobileMenu} />
-						<MainContainer mobileNav={this.state.mobileMenuOpen} />
-					</DataContext.Provider>
-				)}
+						<DataContext.Provider value={this.state}>
+							<Navbar setMenuState={this.setMobileMenu} />
+							<MainContainer mobileNav={this.state.mobileMenuOpen} />
+						</DataContext.Provider>
+					)}
 			</div>
 		);
 	}
+	private deDupeCatList = (): void => {
+		this.setState((prevState: IArrowFunction) => {
+			(
+				categoriesList: uniq   ; (flatten(prevState.categoriesList));
+			);
+	}
+		)
+}
 }

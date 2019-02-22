@@ -9,8 +9,9 @@ export class FooterContainer extends React.Component<ILoadedState, any> {
 	}
 	public fixDate = (str: string): string => {
 		const currentYear: string = String(new Date().getFullYear());
+
 		return str.replace('${CURR_YEAR}', currentYear);
-	};
+	}
 	public render() {
 		return (
 			<DataContext.Consumer>

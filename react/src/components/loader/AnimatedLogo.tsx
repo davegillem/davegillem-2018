@@ -14,7 +14,7 @@ interface IAnimatedLogoProps {
 export const AnimatedLogo: React.SFC<IAnimatedLogoProps> = (props: IAnimatedLogoProps): React.ReactElement<any> => {
 	const { id, ...strokeParams } = { ...props };
 	return (
-		<svg viewBox="0 0 250 500" id={id}>
+		<svg viewBox='0 0 250 500' id={id}>
 			<path
 				{...strokeParams}
 				d='M201.7 163.3c13.9 9.5 29 16.6 45.3 21.4 0 1.6-2.3 4.3-7.8 5.2-31.2 5.2-27.8 121.9-1.5 240.7-40.6 39-33.4
