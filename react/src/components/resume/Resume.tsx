@@ -20,7 +20,7 @@ export class Resume extends React.Component<IResumeProps, any> {
 			selectedItem: e.target.id,
 		});
 	}
-	public render() {
+	public render(): React.ReactNode {
 		return (
 			<div>
 				<div className='container accordionWrapper' itemScope={true} itemType='http://schema.org/ProfilePage'>

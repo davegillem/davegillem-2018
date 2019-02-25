@@ -11,6 +11,7 @@ import {
 	} from 'utilities';
 import { MainContainer } from 'pages';
 import { Navbar, PageLoader } from 'components';
+import { TEXT_KEYS } from 'data';
 
 startLogger();
 
@@ -28,10 +29,11 @@ interface IAppState {
 	work: IEmployerData[];
 }
 
-export const DataContext = React.createContext({} as IAppState);
+export const DataContext: React.Context<IAppState> = React.createContext({} as IAppState);
 
 export class App extends React.Component<ILoadedState, IAppState> {
 	public loadingID: string = 'loadingLogo';
+	private const textKeys: ITextKeys = TEXT_KEYS;
 	constructor(props: ILoadedState) {
 		super(props);
 		this.state = {
@@ -44,19 +46,19 @@ export class App extends React.Component<ILoadedState, IAppState> {
 			references: [],
 			social: [],
 			textKeyData: [],
-			textKeys: {},
-			work: []
+			textKeys: this.textKeys,
+			work: [],
 		};
 	}
-	public processData = (wpData: IAppState) => {
+	public processData = (wpData: IAppState): void => {
 		const tempPages: IPage = {};
 		const tempKeys: ITextKeys = {};
 		const { pageItems, textKeyData, ...other }: IAppState = wpData;
 
-		pageItems.map((page) => {
+		pageItems.map((page): void => {
 			tempPages[page.slug] = page;
 		});
-		textKeyData.map((key) => {
+		textKeyData.map((key): void => {
 			tempKeys[key.slug] = key.description;
 		});
 		this.setState({ pages: tempPages, textKeys: tempKeys, ...other, isLoading: false });
@@ -67,7 +69,7 @@ export class App extends React.Component<ILoadedState, IAppState> {
 			animation: 'animationend',
 			MozAnimation: 'animationend',
 			OAnimation: 'oAnimationEnd',
-			WebkitAnimation: 'webkitAnimationEnd'
+			WebkitAnimation: 'webkitAnimationEnd',
 		};
 
 		for (const t in animations) {
@@ -77,7 +79,7 @@ export class App extends React.Component<ILoadedState, IAppState> {
 		}
 		return '';
 	}
-	public componentDidMount() {
+	public componentDidMount(): void {
 		// check to see if logo is done animating so it doesn't cut off
 		const el: any = document.getElementById(this.loadingID);
 		const animationEvent = this.whichAnimationEvent();
@@ -86,37 +88,38 @@ export class App extends React.Component<ILoadedState, IAppState> {
 			this.setState({ loaderAnimating: false });
 		});
 		try {
-			Promise.all<
-				Promise<IPageData[]>,
-				Promise<ITextKeyData[]>,
-				Promise<ISocialAccountData[]>,
-				Promise<IEmployerData[]>,
-				Promise<IEducationData[]>,
-				Promise<IReferenceData[]>([
-				getData(getPages),
-				getData(getTextKeys),
-				getData(getSocial),
-				getData(getEmployers),
-				getData(getEducation),
-				getData(getReferences)
-			]).then(([pageItems, textKeyData, social, work, education, references]) => {
-				const wpData: any = {
-					education: education,
-					pageItems: pageItems,
-					references: references,
-					social: social,
-					textKeyData: textKeyData,
-					work: work
-				};
+			Promise.all <
+				Promise < IPageData[] >,
+				Promise < ITextKeyData[] >,
+				Promise < ISocialAccountData[] >,
+				Promise < IEmployerData[] >,
+				Promise < IEducationData[] >,
+				Promise<IReferenceData[]>
+					([
+						getData(getPages),
+						getData(getTextKeys),
+						getData(getSocial),
+						getData(getEmployers),
+						getData(getEducation),
+						getData(getReferences),
+					]).then(([pageItems, textKeyData, social, work, education, references]) => {
+						const wpData: any = {
+							education: education,
+							pageItems: pageItems,
+							references: references,
+							social: social,
+							textKeyData: textKeyData,
+							work: work,
+						};
 
-				console.log('GET DATA', wpData);
-				this.processData(wpData);
-			});
+						console.log('GET DATA', wpData);
+						this.processData(wpData);
+					});
 		} catch (err) {
 			console.log(err);
 		}
 	}
-	public setMobileMenu = (menuOpen: boolean) => {
+	public setMobileMenu = (menuOpen: boolean): void => {
 		this.setState({ mobileMenuOpen: menuOpen });
 	}
 	public render(): React.ReactNode {
@@ -133,12 +136,4 @@ export class App extends React.Component<ILoadedState, IAppState> {
 			</div>
 		);
 	}
-	private deDupeCatList = (): void => {
-		this.setState((prevState: IArrowFunction) => {
-			(
-				categoriesList: uniq   ; (flatten(prevState.categoriesList));
-			);
-	}
-		)
-}
 }

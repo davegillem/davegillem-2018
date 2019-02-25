@@ -1,6 +1,6 @@
-const CURR_YEAR = new Date().getFullYear();
+const CURR_YEAR: string = new Date().getFullYear().toString();
 
-export const textKeys = {
+export const TEXT_KEYS: ITextKeys = {
 	buttons: {
 		cancel: 'Cancel',
 		submit: 'Submit',
@@ -37,9 +37,4 @@ export const textKeys = {
 		references: 'References',
 		resume: 'Résumé',
 	},
-};
-
-// *********************** PUBLIC METHODS ************************* //
-export const getKeys = (keyset: string) => {
-	return keyset ? textKeys[keyset] : textKeys;
 };
