@@ -11,8 +11,11 @@ export class SocialContainer extends React.Component<ILoadedState, {}> {
 	public render(): React.ReactNode {
 		return (
 			<DataContext.Consumer>
-				{(dataContext: IDataContext): React.ReactNode => { <Social socialItems={...dataContext.social} /> }
+				{(dataContext: IDataContext): JSX.Element => {
+					return <Social socialItems={...dataContext.social} />;
+				}
+				}
 			</DataContext.Consumer>
-			);
-		}
+		);
 	}
+}

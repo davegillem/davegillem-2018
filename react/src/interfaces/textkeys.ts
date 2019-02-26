@@ -23,10 +23,10 @@ interface IContact {
 }
 
 interface IErrors {
-	contactEmailFormat: string;
-	contactEmailRequired: string;
-	contactMsgRequired: string;
-	contactNameRequired: string;
+	emailFormat: string;
+	emailRequired: string;
+	msgRequired: string;
+	nameRequired: string;
 }
 
 interface IGlobal {

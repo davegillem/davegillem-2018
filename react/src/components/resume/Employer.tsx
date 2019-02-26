@@ -2,11 +2,11 @@ import * as React from 'react';
 import { formatDate } from 'utilities';
 
 let presentText: string;
-const getDate = (dataStr: string, present?: boolean): string => {
+const getDate: IArrowFunction = (dataStr: string, present?: boolean): string => {
 	return present ? presentText : formatDate(dataStr) || '';
 };
 
-export const Employer: React.SFC<IEmployerProps> = (props: IEmployerProps): React.ReactElement<any> => {
+export const Employer: React.StatelessComponent<IEmployerProps> = (props: IEmployerProps): JSX.Element => {
 	presentText = props.presentText;
 	return (
 		<div className='employer' itemProp='employee' itemScope={true} itemType='http://schema.org/EmployeeRole'>

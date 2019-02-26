@@ -4,5 +4,12 @@ interface IContactFields {
 	contactName: string;
 }
 interface IContactForm extends IContactFields {
-	errors: any;
+	errors: IValidationError; // Map<string, IFieldError>;
+	formSubmitted: boolean;
 }
+
+/*
+ * Type items copied from flow types found in the ree-validator repo
+ * https://github.com/moeen-basra/ree-validate/tree/master/flow
+*/
+/* tslint:disable */

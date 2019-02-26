@@ -5,7 +5,7 @@ interface ISiteLogoProps {
 	href: string;
 }
 
-export const SiteLogo: React.SFC<ISiteLogoProps> = (props: ISiteLogoProps): React.ReactElement<any> => {
+export const SiteLogo: React.StatelessComponent<ISiteLogoProps> = (props: ISiteLogoProps): JSX.Element => {
 	return (
 		<a className='logoHolder' href={props.href} itemScope={true} itemType='http://schema.org/WPHeader'>
 			<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 250 500' id={props.id}>

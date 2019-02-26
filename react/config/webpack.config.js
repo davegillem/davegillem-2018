@@ -2,9 +2,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin-alt');
-const fs = require('fs');
+// const fs = require('fs');
 const getClientEnvironment = require('./env');
-const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
+// const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -14,8 +14,8 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const path = require('path');
 const paths = require('./paths');
 const PnpWebpackPlugin = require('pnp-webpack-plugin');
-const resolve = require('resolve');
-const safePostCssParser = require('postcss-safe-parser');
+// const resolve = require('resolve');
+// const safePostCssParser = require('postcss-safe-parser');
 const TerserPlugin = require('terser-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
@@ -23,11 +23,11 @@ const webpack = require('webpack');
 
 const cssFilename = 'css/[name].css';
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
-const useTypeScript = fs.existsSync(paths.appTsConfig);
+// const useTypeScript = fs.existsSync(paths.appTsConfig);
 
 const allCssRegex = /\.(sa|sc|c)ss$/;
 
-const ensureArray = (config) => config && (Array.isArray(config) ? config : [config]) || []; // tslint:disable-line
+const ensureArray = (config) => config && (Array.isArray(config) ? config : [config]) || []; // eslint-disable-line
 const when = (condition, config, negativeConfig) =>
 	condition ? ensureArray(config) : ensureArray(negativeConfig);
 
@@ -44,7 +44,6 @@ module.exports = function (webpackEnv) {
 		bail: isEnvProduction,
 		devtool: isEnvProduction ? 'source-map' : 'cheap-module-source-map',
 		entry: isEnvProduction ? {
-			'stateless': [paths.statelessCSS],
 			'app': [require.resolve('./polyfills'), paths.appIndexJs]
 		} : {
 			'app': [require.resolve('./polyfills'), paths.appIndexJs, require.resolve('react-dev-utils/webpackHotDevClient')]

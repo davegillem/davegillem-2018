@@ -11,8 +11,8 @@ interface IAnimatedLogoProps {
 	strokeWidth?: string | number;
 }
 
-export const AnimatedLogo: React.SFC<IAnimatedLogoProps> = (props: IAnimatedLogoProps): React.ReactElement<any> => {
-	const { id, ...strokeParams } = { ...props };
+export const AnimatedLogo: React.StatelessComponent<IAnimatedLogoProps> = (props: IAnimatedLogoProps): JSX.Element => {
+	const { id, ...strokeParams }: IAnimatedLogoProps = props;
 	return (
 		<svg viewBox='0 0 250 500' id={id}>
 			<path
@@ -27,7 +27,8 @@ export const AnimatedLogo: React.SFC<IAnimatedLogoProps> = (props: IAnimatedLogo
 				16.3-23.1 29.9-35.4-2.9-5.7-6.3-11.1-10.1-16.1-9.3-12.3-14.6-19.4-15.9-21.3-31.6 19.2-47.4 54.4-47.4 105.4 0 26.2 5.7 46.6 17 61.2 7.4 9.6 15.5
 				16 24.2 19.3-8.7-16.7-13-36.1-13-58.2 0-18.3 5.1-36.6 15.3-54.9m99.6 96.7V199.4c0-1.9-4.9-6.2-14.8-13.1-1.6-1.1-3-2.1-4.4-3 5.9 15.7 8.9 31.2 8.9
 				46.6 0 39-14.6 72.8-43.7 101.5 9 9.5 18.9 14.3 29.7 14.3 6.1 0 11.6-2.6 16.8-7.7 4.9-5 7.5-9.7 7.5-14.1m-62.7-3.6c6.4-14.9 9.6-32.5 9.6-52.8
-				0-15.7-2.1-31.9-6.4-48.5-.6-2.3-1.3-4.6-2-6.8-7.9 16.1-11.9 36.2-11.9 60.2.1 19.8 3.7 35.8 10.7 47.9'/>
+				0-15.7-2.1-31.9-6.4-48.5-.6-2.3-1.3-4.6-2-6.8-7.9 16.1-11.9 36.2-11.9 60.2.1 19.8 3.7 35.8 10.7 47.9'
+			/>
 		</svg>
 	);
 };

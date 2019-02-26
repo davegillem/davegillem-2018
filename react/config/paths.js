@@ -61,6 +61,27 @@ module.exports = {
 	dotenv: resolveApp('.env'),
 	publicUrl: getPublicUrl(resolveApp('package.json')),
 	servedPath: getServedPath(resolveApp('package.json')),
-	testsSetup: resolveApp('src/setupTests.ts'),
-	yarnLockFile: resolveApp('yarn.lock')
+	// testsSetup: resolveApp('src/setupTests.ts'),
+	// yarnLockFile: resolveApp('yarn.lock')
 };
+module.exports.moduleFileExtensions = moduleFileExtensions;
+
+// module.exports = {
+// 	appBuild: resolveApp('build'),
+// 	appHtmlDev: resolveApp('public/index-dev.html'),
+// 	appHtmlProd: resolveApp('public/index.html'),
+// 	appIndexJs: resolveApp('src/index.tsx'),
+// 	appNodeModules: resolveApp('node_modules'),
+// 	appPackageJson: resolveApp('package.json'),
+// 	appPath: resolveApp('.'),
+// 	appPublic: resolveApp('public'),
+// 	appSrc: resolveApp('src'),
+// 	appTsConfig: resolveApp('tsconfig.test.json'),
+// 	appTsLint: resolveApp('tslint.json'),
+// 	appTsProdConfig: resolveApp('tsconfig.prod.json'),
+// 	dotenv: resolveApp('.env'),
+// 	publicUrl: getPublicUrl(resolveApp('package.json')),
+// 	servedPath: getServedPath(resolveApp('package.json')),
+// 	statelessCSS: resolveApp('src/styles/Stateless.scss'),
+// 	yarnLockFile: resolveApp('yarn.lock')
+// };

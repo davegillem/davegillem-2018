@@ -7,16 +7,14 @@ export class FooterContainer extends React.Component<ILoadedState, {}> {
 		super(props);
 		this.state = {};
 	}
-	public fixDate = (str: string): string => {
-		const currentYear: string = String(new Date().getFullYear());
-
-		return str.replace('${CURR_YEAR}', currentYear);
-	}
-	public render(): React.ReactNode {
+	public render(): JSX.Element {
 		return (
 			<DataContext.Consumer>
-				{(dataContext: IDataContext): React.ReactNode => { <Footer footerText={this.fixDate(dataContext.textKeys.global_footer)} /> }
+				{(dataContext: IDataContext): JSX.Element => {
+					return <Footer footerText={dataContext.textKeys.global.footer} />;
+				}
+				}
 			</DataContext.Consumer>
-			);
-		}
+		);
 	}
+}

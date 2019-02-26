@@ -6,12 +6,11 @@
 type IEvent = any;
 type IPromise = any;
 type IPromiseResponse = any;
-type IPromiseReject = any;
-type IDynamicType = Pick<any, any>;
-type IPrivateRouteProps = any;
-type ISession = any;
 type IArrowFunction = any;
 type IContext = any;
+type IValidator = any; // ree-validate type
+type IValidationError = any; // ree-validate error type
+type IValidationSuccess = any; // ree-validate success type
 
 interface IKeyValuePair {
 	[key: string]: any;

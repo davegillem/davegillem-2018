@@ -4,7 +4,7 @@ export interface ISocialProps {
 	socialItems: ISocialAccountData[];
 }
 
-export const Social: React.SFC<ISocialProps> = (props: ISocialProps): React.ReactElement<any> => {
+export const Social: React.StatelessComponent<ISocialProps> = (props: ISocialProps): JSX.Element => {
 	return (
 		<div>
 			<div id='socialLinks' className='showView'>

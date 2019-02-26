@@ -5,7 +5,7 @@ interface IPageLoaderProps {
 	loadingID: string;
 }
 
-export const PageLoader: React.SFC<IPageLoaderProps> = (props: IPageLoaderProps): React.ReactElement<any> => {
+export const PageLoader: React.StatelessComponent<IPageLoaderProps> = (props: IPageLoaderProps): JSX.Element => {
 	return (
 		<div className='loading'>
 			<AnimatedLogo id={props.loadingID} />

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { formatDate } from 'utilities';
 
-export const Education: React.SFC<IEducationData> = (props: IEducationData): React.ReactElement<any> => {
+export const Education: React.StatelessComponent<IEducationData> = (props: IEducationData): JSX.Element => {
 	return (
 		<div
 			className={`education eduType-${props.course_type}`}

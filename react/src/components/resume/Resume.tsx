@@ -1,23 +1,25 @@
 import * as React from 'react';
 import { Education, Employer, Reference } from './';
-
+import { TEXT_KEYS } from 'data';
 interface IResumeProps extends IPageData {
-	textKeys: ITextKeys;
 	education: IEducationData[];
 	work: IEmployerData[];
 	references: IReferenceData[];
 }
-
-export class Resume extends React.Component<IResumeProps, any> {
+interface IResumeState {
+	selectedItem: string;
+}
+export class Resume extends React.Component<IResumeProps, IResumeState> {
+	private textKeys: ITextKeys = TEXT_KEYS;
 	constructor(props: IResumeProps) {
 		super(props);
 		this.state = {
 			selectedItem: 'resumeSummary',
 		};
 	}
-	public handleOptionChange = (e: any) => {
+	public handleOptionChange = (evt: IEvent): void => {
 		this.setState({
-			selectedItem: e.target.id,
+			selectedItem: evt.target.id,
 		});
 	}
 	public render(): React.ReactNode {
@@ -53,8 +55,8 @@ export class Resume extends React.Component<IResumeProps, any> {
 									<Employer
 										key={employer.id}
 										{...employer}
-										presentText={this.props.textKeys.global_present}
-										additionalText={this.props.textKeys.global_additional}
+										presentText={this.textKeys.global.present}
+										additionalText={this.textKeys.global.additional}
 									/>
 								);
 							})}

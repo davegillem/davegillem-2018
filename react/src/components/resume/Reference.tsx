@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { humanizeDate } from 'utilities';
 
-export const Reference: React.SFC<IReferenceData> = (props: IReferenceData): React.ReactElement<any> => {
+export const Reference: React.StatelessComponent<IReferenceData> = (props: IReferenceData): JSX.Element => {
 	return (
 		<div className='reference' itemProp='review' itemScope={true} itemType='http://schema.org/CreativeWork'>
 			<div

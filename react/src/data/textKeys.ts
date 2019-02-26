@@ -15,10 +15,10 @@ export const TEXT_KEYS: ITextKeys = {
 		thankYou: "Thank you, I'll be in touch... maybe...",
 	},
 	errors: {
-		contactEmailFormat: 'Dude, come on you know what an email address looks like!',
-		contactEmailRequired: 'Pretty simple concept, where do you get your digital communications delivered??',
-		contactMsgRequired: 'Did you forget why you were here?',
-		contactNameRequired: "Sorry I don't speak subliminal, you need an actual name here",
+		emailFormat: 'Dude, come on you know what an email address looks like!',
+		emailRequired: 'Pretty simple concept, where do you get your digital communications delivered??',
+		msgRequired: 'Did you forget why you were here?',
+		nameRequired: "Sorry I don't speak subliminal, you need an actual name here",
 	},
 	global: {
 		additional: 'ADDITIONAL:',
