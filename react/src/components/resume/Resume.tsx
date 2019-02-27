@@ -1,51 +1,53 @@
 import * as React from 'react';
 import { Education, Employer, Reference } from './';
-
+import { TEXT_KEYS } from 'data';
 interface IResumeProps extends IPageData {
-	textKeys: ITextKeys;
 	education: IEducationData[];
 	work: IEmployerData[];
 	references: IReferenceData[];
 }
-
-export class Resume extends React.Component<IResumeProps, any> {
+interface IResumeState {
+	selectedItem: string;
+}
+export class Resume extends React.Component<IResumeProps, IResumeState> {
+	private textKeys: ITextKeys = TEXT_KEYS;
 	constructor(props: IResumeProps) {
 		super(props);
 		this.state = {
-			selectedItem: 'resumeSummary'
+			selectedItem: 'resumeSummary',
 		};
 	}
-	public handleOptionChange = (e: any) => {
+	public handleOptionChange = (evt: IEvent): void => {
 		this.setState({
-			selectedItem: e.target.id
+			selectedItem: evt.target.id,
 		});
-	};
-	public render() {
+	}
+	public render(): React.ReactNode {
 		return (
 			<div>
-				<div className="container accordionWrapper" itemScope={true} itemType="http://schema.org/ProfilePage">
-					<div id="summary">
+				<div className='container accordionWrapper' itemScope={true} itemType='http://schema.org/ProfilePage'>
+					<div id='summary'>
 						<input
 							checked={this.state.selectedItem === 'resumeSummary'}
-							id="resumeSummary"
-							name="resumeAccordion"
+							id='resumeSummary'
+							name='resumeAccordion'
 							onChange={this.handleOptionChange}
-							type="radio"
+							type='radio'
 						/>
-						<label htmlFor="resumeSummary">{this.props.title.rendered}</label>
-						<article className="smallPane">
+						<label htmlFor='resumeSummary'>{this.props.title.rendered}</label>
+						<article className='smallPane'>
 							<p dangerouslySetInnerHTML={{ __html: this.props.content.rendered }} />
 						</article>
 					</div>
-					<div id="employerList">
+					<div id='employerList'>
 						<input
 							checked={this.state.selectedItem === 'resumework'}
-							id="resumework"
-							name="resumeAccordion"
+							id='resumework'
+							name='resumeAccordion'
 							onChange={this.handleOptionChange}
-							type="radio"
+							type='radio'
 						/>
-						<label htmlFor="resumework">work</label>
+						<label htmlFor='resumework'>work</label>
 						<article>
 							{console.log('PROPS', this.props, this.props.work)}
 							{this.props.work.map((employer: IEmployerData) => {
@@ -53,36 +55,36 @@ export class Resume extends React.Component<IResumeProps, any> {
 									<Employer
 										key={employer.id}
 										{...employer}
-										presentText={this.props.textKeys.global_present}
-										additionalText={this.props.textKeys.global_additional}
+										presentText={this.textKeys.global.present}
+										additionalText={this.textKeys.global.additional}
 									/>
 								);
 							})}
 						</article>
 					</div>
-					<div id="educationList">
+					<div id='educationList'>
 						<input
-							id="resumeEducation"
-							name="resumeAccordion"
-							type="radio"
+							id='resumeEducation'
+							name='resumeAccordion'
+							type='radio'
 							onChange={this.handleOptionChange}
 						/>
-						<label htmlFor="resumeEducation">Education / Certifications</label>
+						<label htmlFor='resumeEducation'>Education / Certifications</label>
 						<article>
 							{this.props.education.map((cert: IEducationData) => {
 								return <Education key={cert.id} {...cert} />;
 							})}
 						</article>
 					</div>
-					<div id="referenceList">
+					<div id='referenceList'>
 						<input
 							checked={this.state.selectedItem === 'resumeReferences'}
-							id="resumeReferences"
-							name="resumeAccordion"
+							id='resumeReferences'
+							name='resumeAccordion'
 							onChange={this.handleOptionChange}
-							type="radio"
+							type='radio'
 						/>
-						<label htmlFor="resumeReferences">References</label>
+						<label htmlFor='resumeReferences'>References</label>
 						<article>
 							{this.props.references.map((ref: IReferenceData) => {
 								return <Reference key={ref.id} {...ref} />;

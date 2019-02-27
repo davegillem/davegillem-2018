@@ -6,29 +6,23 @@ import {
 	getPages,
 	getReferences,
 	getSocial,
-	getTextKeys,
 	startLogger
 	} from 'utilities';
 import { MainContainer } from 'pages';
 import { Navbar, PageLoader } from 'components';
+import { TEXT_KEYS } from 'data';
 
 startLogger();
 
-interface IAppState {
-	education: IEducationData[];
+interface IAppState extends IServerData {
 	isLoading: boolean;
 	loaderAnimating: boolean;
 	mobileMenuOpen: boolean;
 	pages: IPage;
-	pageItems: IPageData[];
-	references: IReferenceData[];
-	social: ISocialAccountData[];
-	textKeyData: ITextKeyData[];
 	textKeys: ITextKeys;
-	work: IEmployerData[];
 }
 
-export const DataContext = React.createContext({} as IAppState);
+export const DataContext: React.Context<IAppState> = React.createContext({} as IAppState);
 
 export class App extends React.Component<ILoadedState, IAppState> {
 	public loadingID: string = 'loadingLogo';
@@ -43,90 +37,108 @@ export class App extends React.Component<ILoadedState, IAppState> {
 			pages: {},
 			references: [],
 			social: [],
-			textKeyData: [],
-			textKeys: {},
-			work: []
+			textKeys: TEXT_KEYS,
+			work: [],
 		};
 	}
-	public processData = (wpData: IAppState) => {
+	public processData = (serverData: IServerData): void => {
 		const tempPages: IPage = {};
-		const tempKeys: ITextKeys = {};
-		const { pageItems, textKeyData, ...other }: IAppState = wpData;
-		pageItems.map(page => {
+		const { pageItems, ...other }: IServerData = serverData;
+
+		pageItems.map((page: IPageData): void => {
 			tempPages[page.slug] = page;
 		});
-		textKeyData.map(key => {
-			tempKeys[key.slug] = key.description;
-		});
-		this.setState({ pages: tempPages, textKeys: tempKeys, ...other, isLoading: false });
-	};
+		this.setState({ pages: tempPages, ...other, isLoading: false });
+	}
 	public whichAnimationEvent = (): string => {
-		const el: any = document.getElementById(this.loadingID);
+		const el: HTMLElement | null = document.getElementById(this.loadingID);
 		const animations: object = {
 			animation: 'animationend',
 			MozAnimation: 'animationend',
 			OAnimation: 'oAnimationEnd',
-			WebkitAnimation: 'webkitAnimationEnd'
+			WebkitAnimation: 'webkitAnimationEnd',
 		};
-		for (const t in animations) {
-			if (el.style[t] !== undefined) {
-				return animations[t];
+
+		if (el) {
+			for (const t in animations) {
+				if (el.style[t] !== undefined) {
+					return animations[t];
+				}
 			}
 		}
+
 		return '';
-	};
-	public componentDidMount() {
+	}
+	public componentDidMount(): void {
 		// check to see if logo is done animating so it doesn't cut off
-		const el: any = document.getElementById(this.loadingID);
-		const animationEvent = this.whichAnimationEvent();
-		el.addEventListener(animationEvent, () => {
-			this.setState({ loaderAnimating: false });
-		});
-		try {
-			Promise.all<
-				Promise<IPageData[]>,
-				Promise<ITextKeyData[]>,
-				Promise<ISocialAccountData[]>,
-				Promise<IEmployerData[]>,
-				Promise<IEducationData[]>,
-				Promise<IReferenceData[]>
-			>([
+		const el: HTMLElement | null = document.getElementById(this.loadingID);
+		const animationEvent: string = this.whichAnimationEvent();
+
+		if (el) {
+			el.addEventListener(animationEvent, () => {
+				this.setState({ loaderAnimating: false });
+			});
+		}
+		const apiCalls: [
+			Promise<IPageData[]>,
+			Promise<ISocialAccountData[]>,
+			Promise<IEmployerData[]>,
+			Promise<IEducationData[]>,
+			Promise<IReferenceData[]>
+		] = [
 				getData(getPages),
-				getData(getTextKeys),
 				getData(getSocial),
 				getData(getEmployers),
 				getData(getEducation),
-				getData(getReferences)
-			]).then(([pageItems, textKeyData, social, work, education, references]) => {
-				const wpData: any = {
-					education: education,
-					pageItems: pageItems,
-					references: references,
-					social: social,
-					textKeyData: textKeyData,
-					work: work
-				};
-				console.log('GET DATA', wpData);
-				this.processData(wpData);
-			});
+				getData(getReferences),
+			];
+
+		try {
+			Promise.all(apiCalls)
+				.then((
+					[
+						pageItems,
+						social,
+						work,
+						education,
+						references,
+					]:
+						[
+							IPageData[],
+							ISocialAccountData[],
+							IEmployerData[],
+							IEducationData[],
+							IReferenceData[]
+						]
+				): void => {
+					const serverData: IServerData = {
+						education: education,
+						pageItems: pageItems,
+						references: references,
+						social: social,
+						work: work,
+					};
+
+					this.processData(serverData);
+				});
 		} catch (err) {
 			console.log(err);
 		}
 	}
-	public setMobileMenu = (menuOpen: boolean) => {
+	public setMobileMenu = (menuOpen: boolean): void => {
 		this.setState({ mobileMenuOpen: menuOpen });
-	};
+	}
 	public render(): React.ReactNode {
 		return (
-			<div id="appMain" itemScope={true} itemType="http://schema.org/WebPage">
+			<div id='appMain' itemScope={true} itemType='http://schema.org/WebPage'>
 				{this.state.isLoading || this.state.loaderAnimating ? (
 					<PageLoader loadingID={this.loadingID} />
 				) : (
-					<DataContext.Provider value={this.state}>
-						<Navbar setMenuState={this.setMobileMenu} />
-						<MainContainer mobileNav={this.state.mobileMenuOpen} />
-					</DataContext.Provider>
-				)}
+						<DataContext.Provider value={this.state}>
+							<Navbar setMenuState={this.setMobileMenu} />
+							<MainContainer mobileNav={this.state.mobileMenuOpen} />
+						</DataContext.Provider>
+					)}
 			</div>
 		);
 	}
