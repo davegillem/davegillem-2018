@@ -12,14 +12,14 @@ interface IPage {
 	[pageName: string]: IPageData;
 }
 
-interface ITextKeyData {
-	id: number;
-	description: string;
-	slug: string;
-}
-interface ITextKeys {
-	[keyName: string]: string;
-}
+// interface ITextKeyData {
+// 	id: number;
+// 	description: string;
+// 	slug: string;
+// }
+// interface ITextKeys {
+// 	[keyName: string]: string;
+// }
 
 interface ISocialAccountData {
 	id: number;
@@ -66,4 +66,12 @@ interface IReferenceData {
 	job_title: string;
 	title: IRenderedContent;
 	content: IRenderedContent;
+}
+
+interface IServerData {
+	education: IEducationData[];
+	pageItems: IPageData[];
+	references: IReferenceData[];
+	social: ISocialAccountData[];
+	work: IEmployerData[];
 }

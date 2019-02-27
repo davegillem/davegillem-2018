@@ -2,19 +2,18 @@ import * as React from 'react';
 import { DataContext } from 'App';
 import { Footer } from '.';
 
-export class FooterContainer extends React.Component<ILoadedState, any> {
+export class FooterContainer extends React.Component<ILoadedState, {}> {
 	constructor(props: ILoadedState) {
 		super(props);
 		this.state = {};
 	}
-	public fixDate = (str: string): string => {
-		const currentYear: string = String(new Date().getFullYear());
-		return str.replace('${CURR_YEAR}', currentYear);
-	};
-	public render() {
+	public render(): JSX.Element {
 		return (
 			<DataContext.Consumer>
-				{(dataContext: any) => <Footer footerText={this.fixDate(dataContext.textKeys.global_footer)} />}
+				{(dataContext: IDataContext): JSX.Element => {
+					return <Footer footerText={dataContext.textKeys.global.footer} />;
+				}
+				}
 			</DataContext.Consumer>
 		);
 	}

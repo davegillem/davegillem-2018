@@ -6,17 +6,16 @@ interface IStatusObj {
 	redirect?: boolean;
 	retry?: boolean;
 	success?: boolean;
+	unauthorized?: boolean;
 }
-export const STATUS = {
+export const STATUS: IHTTPStatus = {
 	empty: {
 		204: true,
 		205: true,
-		304: true
+		304: true,
 	},
 	forbidden: {
-		401: true,
 		403: true,
-		511: true
 	},
 	redirect: {
 		300: true,
@@ -25,12 +24,12 @@ export const STATUS = {
 		303: true,
 		305: true,
 		307: true,
-		308: true
+		308: true,
 	},
 	retry: {
 		502: true,
 		503: true,
-		504: true
+		504: true,
 	},
 	success: {
 		200: true,
@@ -42,10 +41,14 @@ export const STATUS = {
 		206: true,
 		207: true,
 		208: true,
-		226: true
-	}
+		226: true,
+	},
+	unauthorized: {
+		401: true,
+		511: true,
+	},
 };
-export const STATUS_CODES = {
+export const STATUS_CODES: {} = {
 	100: 'Continue',
 	101: 'Switching Protocols',
 	102: 'Processing',
@@ -108,15 +111,15 @@ export const STATUS_CODES = {
 	508: 'Loop Detected',
 	509: 'Bandwidth Limit Exceeded',
 	510: 'Not Extended',
-	511: 'Network Authentication Required'
+	511: 'Network Authentication Required',
 };
-export const checkHTTPStatus = (code: number): IStatusObj => {
+export const checkHTTPStatus: IArrowFunction = (code: number): IStatusObj => {
 	const statusObj: IStatusObj = {
 		code: code,
-		message: STATUS_CODES[code]
+		message: STATUS_CODES[code],
 	};
-	Object.keys(STATUS).map(e => {
-		statusObj[e] = STATUS[e][code] === true;
+	Object.keys(STATUS).map((errorKey: string) => {
+		statusObj[errorKey] = STATUS[errorKey][code] === true;
 	});
 	return statusObj;
 };

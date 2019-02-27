@@ -4,11 +4,11 @@ export interface ISocialProps {
 	socialItems: ISocialAccountData[];
 }
 
-export const Social: React.SFC<ISocialProps> = (props: ISocialProps): React.ReactElement<any> => {
+export const Social: React.StatelessComponent<ISocialProps> = (props: ISocialProps): JSX.Element => {
 	return (
 		<div>
-			<div id="socialLinks" className="showView">
-				<ul className="social-networks square spin-icon">
+			<div id='socialLinks' className='showView'>
+				<ul className='social-networks square'>
 					{props.socialItems.map((link: ISocialAccountData) => {
 						return <SocialItem key={link.id} {...link} />;
 					})}

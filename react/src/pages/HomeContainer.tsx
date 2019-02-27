@@ -2,15 +2,21 @@ import * as React from 'react';
 import { DataContext } from 'App';
 import { Home } from 'components';
 
-export class HomeContainer extends React.Component<ILoadedState, any> {
+export class HomeContainer extends React.Component<ILoadedState, {}> {
 	constructor(props: ILoadedState) {
 		super(props);
 		this.state = {};
 	}
 
-	public render() {
+	public render(): React.ReactNode {
 		return (
-			<DataContext.Consumer>{(dataContext: any) => <Home {...dataContext.pages.home} />}</DataContext.Consumer>
+			<DataContext.Consumer>
+				{(dataContext: IDataContext): React.ReactNode => {
+					return (
+						<Home {...dataContext.pages.home} />
+					);
+				}}
+			</DataContext.Consumer>
 		);
 	}
 }

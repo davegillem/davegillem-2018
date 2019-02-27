@@ -1,0 +1,81 @@
+[{
+	"id": 54,
+	"slug": "instagram",
+	"url": "https:\/\/www.instagram.com\/davegillem\/",
+	"category": "social",
+	"title": {
+		"rendered": "Instagram"
+	}
+}, {
+	"id": 53,
+	"slug": "twitter",
+	"url": "https:\/\/twitter.com\/davegillem",
+	"category": "social",
+	"title": {
+		"rendered": "Twitter"
+	}
+}, {
+	"id": 40,
+	"slug": "pluralsight",
+	"url": "https:\/\/app.pluralsight.com\/profile\/dave-gillem",
+	"category": "skill",
+	"title": {
+		"rendered": "Pluralsight"
+	}
+}, {
+	"id": 39,
+	"slug": "code-school",
+	"url": "https:\/\/www.codeschool.com\/users\/davegillem",
+	"category": "skill",
+	"title": {
+		"rendered": "Code School"
+	}
+}, {
+	"id": 38,
+	"slug": "linkedin",
+	"url": "https:\/\/www.linkedin.com\/in\/davegillem\/",
+	"category": "skill",
+	"title": {
+		"rendered": "LinkedIn"
+	}
+}, {
+	"id": 37,
+	"slug": "dribbble",
+	"url": "https:\/\/dribbble.com\/davegillem",
+	"category": "design",
+	"title": {
+		"rendered": "Dribbble"
+	}
+}, {
+	"id": 36,
+	"slug": "behance",
+	"url": "https:\/\/www.behance.net\/davegillem",
+	"category": "design",
+	"title": {
+		"rendered": "B\u0113hance"
+	}
+}, {
+	"id": 35,
+	"slug": "codepen",
+	"url": "https:\/\/codepen.io\/davegillem\/",
+	"category": "code",
+	"title": {
+		"rendered": "CodePen"
+	}
+}, {
+	"id": 34,
+	"slug": "stackoverflow",
+	"url": "https:\/\/stackoverflow.com\/users\/1732723\/dave-gillem",
+	"category": "code",
+	"title": {
+		"rendered": "StackOverflow"
+	}
+}, {
+	"id": 19,
+	"slug": "github",
+	"url": "https:\/\/github.com\/davegillem",
+	"category": "code",
+	"title": {
+		"rendered": "GitHub"
+	}
+}]
