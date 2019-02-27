@@ -2,8 +2,6 @@ const path = require('path');
 const fs = require('fs');
 const url = require('url');
 
-// Make sure any symlinks in the project folder are resolved:
-// https://github.com/facebookincubator/create-react-app/issues/637
 const appDirectory = fs.realpathSync(process.cwd()); // eslint-disable-line
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
@@ -44,7 +42,6 @@ const moduleFileExtensions = [
 	'jsx'
 ];
 
-// config after eject: we're in ./config/
 module.exports = {
 	appBuild: resolveApp('build'),
 	appHtml: resolveApp('public/index.html'),
@@ -53,6 +50,7 @@ module.exports = {
 	appIndexJs: resolveApp('src/index.tsx'),
 	appNodeModules: resolveApp('node_modules'),
 	appPackageJson: resolveApp('package.json'),
+	appPath: resolveApp('.'),
 	appPublic: resolveApp('public'),
 	appSrc: resolveApp('src'),
 	appTsConfig: resolveApp('tsconfig.json'),
@@ -60,28 +58,6 @@ module.exports = {
 	appTsProdConfig: resolveApp('tsconfig.prod.json'),
 	dotenv: resolveApp('.env'),
 	publicUrl: getPublicUrl(resolveApp('package.json')),
-	servedPath: getServedPath(resolveApp('package.json')),
-	// testsSetup: resolveApp('src/setupTests.ts'),
-	// yarnLockFile: resolveApp('yarn.lock')
+	servedPath: getServedPath(resolveApp('package.json'))
 };
 module.exports.moduleFileExtensions = moduleFileExtensions;
-
-// module.exports = {
-// 	appBuild: resolveApp('build'),
-// 	appHtmlDev: resolveApp('public/index-dev.html'),
-// 	appHtmlProd: resolveApp('public/index.html'),
-// 	appIndexJs: resolveApp('src/index.tsx'),
-// 	appNodeModules: resolveApp('node_modules'),
-// 	appPackageJson: resolveApp('package.json'),
-// 	appPath: resolveApp('.'),
-// 	appPublic: resolveApp('public'),
-// 	appSrc: resolveApp('src'),
-// 	appTsConfig: resolveApp('tsconfig.test.json'),
-// 	appTsLint: resolveApp('tslint.json'),
-// 	appTsProdConfig: resolveApp('tsconfig.prod.json'),
-// 	dotenv: resolveApp('.env'),
-// 	publicUrl: getPublicUrl(resolveApp('package.json')),
-// 	servedPath: getServedPath(resolveApp('package.json')),
-// 	statelessCSS: resolveApp('src/styles/Stateless.scss'),
-// 	yarnLockFile: resolveApp('yarn.lock')
-// };

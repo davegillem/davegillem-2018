@@ -8,7 +8,7 @@ export const Social: React.StatelessComponent<ISocialProps> = (props: ISocialPro
 	return (
 		<div>
 			<div id='socialLinks' className='showView'>
-				<ul className='social-networks square spin-icon'>
+				<ul className='social-networks square'>
 					{props.socialItems.map((link: ISocialAccountData) => {
 						return <SocialItem key={link.id} {...link} />;
 					})}

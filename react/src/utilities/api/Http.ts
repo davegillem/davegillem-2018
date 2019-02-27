@@ -1,4 +1,5 @@
 import * as LogStyle from 'utilities';
+import { checkHTTPStatus } from './StatusCodes';
 
 const dataCache: {} = {};
 const $htmlElement: HTMLElement = document.getElementsByTagName('html')[0];
@@ -34,7 +35,46 @@ const buildEndpoint: IArrowFunction = (endpoint: string, params: IKeyValuePair, 
 	}
 	return apiCall;
 };
-
+/**
+ * Converts the successful return to JSON format prior to returning back to the callee
+ * If there is no content present in the response the original response object is returned for the callee to check the status
+ * NOTE: this may need to be expanded with further statuses
+ * @param response a response object returned from the getData fetch call
+ */
+export const parseJSON: IArrowFunction = (response: Response): Response | {} => {
+	if (checkHTTPStatus(response.status).empty) {
+		return response;
+	} else {
+		return response.json();
+	}
+};
+/**
+ * Checks to make sure the return object was a success prior to passing it back to the callee
+ * @param response a response object returned from the getData fetch call
+ */
+const checkStatus: IArrowFunction = (response: Response): Response | void => {
+	if (response.ok) {
+		const respType: string | null = response.headers.get('content-type');
+		if (respType && (respType.includes('application/json') || respType.includes('application/scim+json'))) {
+			return response;
+		} else {
+			if (checkHTTPStatus(response.status).empty) {
+				return response;
+			} else {
+				try {
+					throw new TypeError("Oops, we haven't got JSON!");
+				} catch (err) {
+					console.log("Oops, we haven't got JSON!", err);
+				}
+			}
+		}
+	} else {
+		if (checkHTTPStatus(response.status).forbidden) {
+			window.location.href = '/login';
+		}
+		throw new Error(response.statusText);
+	}
+};
 /**
  * Takes the data passed in and makes an AJAX call. The return is then converted to JSON and passed back to the originating callee
  * A query string is constructed from the data object as needed. Dynamic API parameter replacement is also handled using the data object and endpoint
@@ -64,16 +104,18 @@ export const getData: IArrowFunction = (
 		cache: 'no-cache',
 		headers: headers,
 		method: method,
-	}).then((response: IPromiseResponse) => {
-		$htmlElement.classList.remove('datalLoading');
-		console.group(`\t%cRESPONSE FOR : ${api.endpoint}`, LogStyle.SUCCESS);
-		console.log(`\tDATA FOR ${api.endpoint} : `, response || 'API RETURNS NO DATA HERE');
-		console.groupEnd();
-		if (cacheRef) {
-			dataCache[cacheRef] = response;
-		}
-		return response;
-	});
+	}).then(checkStatus)
+		.then(parseJSON)
+		.then((response: IPromiseResponse) => {
+			$htmlElement.classList.remove('datalLoading');
+			console.group(`\t%cRESPONSE FOR : ${api.endpoint}`, LogStyle.SUCCESS);
+			console.log(`\tDATA FOR ${api.endpoint} : `, response || 'API RETURNS NO DATA HERE');
+			console.groupEnd();
+			if (cacheRef) {
+				dataCache[cacheRef] = response;
+			}
+			return response;
+		});
 };
 /**
  * Constructs the default API object used in the API call variables

@@ -2,9 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin-alt');
-// const fs = require('fs');
 const getClientEnvironment = require('./env');
-// const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -14,16 +12,12 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const path = require('path');
 const paths = require('./paths');
 const PnpWebpackPlugin = require('pnp-webpack-plugin');
-// const resolve = require('resolve');
-// const safePostCssParser = require('postcss-safe-parser');
 const TerserPlugin = require('terser-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 const webpack = require('webpack');
-
 const cssFilename = 'css/[name].css';
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
-// const useTypeScript = fs.existsSync(paths.appTsConfig);
 
 const allCssRegex = /\.(sa|sc|c)ss$/;
 
@@ -35,7 +29,6 @@ module.exports = function (webpackEnv) {
 	const isEnvDevelopment = webpackEnv === 'development';
 	const isEnvProduction = webpackEnv === 'production';
 	const publicPath = isEnvProduction ? paths.servedPath : '/';
-	// const shouldUseRelativeAssetPaths = publicPath === './';
 	const publicUrl = isEnvProduction ? publicPath.slice(0, -1) : '';
 	const env = getClientEnvironment(publicUrl);
 
@@ -109,20 +102,10 @@ module.exports = function (webpackEnv) {
 				'.web.jsx',
 				'.jsx'
 			],
-			// extensions: paths.moduleFileExtensions
-			// 	.map(ext => `.${ext}`)
-			// 	.filter(ext => useTypeScript || !ext.includes('ts')),
 			alias: {
 				'react-native': 'react-native-web'
 			},
 			plugins: [
-				// ...when(isEnvDevelopment, [
-				// 	new HtmlWebpackPlugin({
-				// 		inject: true,
-				// 		template: paths.appHtmlDev
-				// 	}),
-				// 	new InterpolateHtmlPlugin(HtmlWebpackPlugin, env.raw)
-				// ]),
 				PnpWebpackPlugin,
 				new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson]),
 				new TsconfigPathsPlugin({
@@ -160,7 +143,7 @@ module.exports = function (webpackEnv) {
 							loader: require.resolve('url-loader'),
 							options: {
 								limit: 10000,
-								name: 'images/[name].[ext]'
+								name: '../images/[name].[ext]'
 							}
 						},
 						{

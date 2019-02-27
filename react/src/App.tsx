@@ -11,21 +11,15 @@ import {
 import { MainContainer } from 'pages';
 import { Navbar, PageLoader } from 'components';
 import { TEXT_KEYS } from 'data';
-// import { ISocialProps } from './components/social/Social';
 
 startLogger();
 
 interface IAppState extends IServerData {
-	// education: IEducationData[];
 	isLoading: boolean;
 	loaderAnimating: boolean;
 	mobileMenuOpen: boolean;
 	pages: IPage;
-	// pageItems: IPageData[];
-	// references: IReferenceData[];
-	// social: ISocialAccountData[];
 	textKeys: ITextKeys;
-	// work: IEmployerData[];
 }
 
 export const DataContext: React.Context<IAppState> = React.createContext({} as IAppState);
@@ -100,8 +94,23 @@ export class App extends React.Component<ILoadedState, IAppState> {
 			];
 
 		try {
-			Promise.all(apiCalls)// .then((serverData): void => {
-				.then(([pageItems, social, work, education, references]: [IPageData[], ISocialAccountData[], IEmployerData[], IEducationData[], IReferenceData[]]): void => {
+			Promise.all(apiCalls)
+				.then((
+					[
+						pageItems,
+						social,
+						work,
+						education,
+						references,
+					]:
+						[
+							IPageData[],
+							ISocialAccountData[],
+							IEmployerData[],
+							IEducationData[],
+							IReferenceData[]
+						]
+				): void => {
 					const serverData: IServerData = {
 						education: education,
 						pageItems: pageItems,
@@ -109,15 +118,7 @@ export class App extends React.Component<ILoadedState, IAppState> {
 						social: social,
 						work: work,
 					};
-					// const wpData: IServerData = {
-					// 	education: education,
-					// 	pageItems: pageItems,
-					// 	references: references,
-					// 	social: social,
-					// 	work: work,
-					// };
 
-					console.log('GET DATA', serverData);
 					this.processData(serverData);
 				});
 		} catch (err) {
