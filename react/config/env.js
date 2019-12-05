@@ -43,7 +43,7 @@ function getClientEnvironment(publicUrl) {
 				return env;
 			},
 			{
-				NODE_ENV: process.env.NODE_ENV || 'development', // tslint:disable-line
+				NODE_ENV: process.env.NODE_ENV || 'development', // eslint-disable-line
 				PUBLIC_URL: publicUrl,
 			},
 		);

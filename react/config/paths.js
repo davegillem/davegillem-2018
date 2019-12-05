@@ -54,7 +54,6 @@ module.exports = {
 	appPublic: resolveApp('public'),
 	appSrc: resolveApp('src'),
 	appTsConfig: resolveApp('tsconfig.test.json'),
-	appTsLint: resolveApp('tslint.json'),
 	appTsProdConfig: resolveApp('tsconfig.prod.json'),
 	dotenv: resolveApp('.env'),
 	publicUrl: getPublicUrl(resolveApp('package.json')),
