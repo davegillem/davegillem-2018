@@ -1,0 +1,309 @@
+.accordionWrapper {
+	margin: 10px auto 30px auto;
+	text-align: left;
+
+	label {
+		padding: 0;
+		position: relative;
+		z-index: 20;
+		display: block;
+		@include trueheight(50px);
+		color: $acc-head-sel-color;
+		font-size: 25px;
+		background: transparent;
+		font-family: Alegreya SC, serif;
+		white-space: nowrap;
+
+		&:before {
+			font-family: 'Font Awesome 5 Free';
+			content: '\f054';
+			font-size: 1rem;
+			font-weight: 900;
+			line-height: 1.3rem;
+			height: 1.3rem;
+			margin-right: 15px;
+			display: inline-block;
+			@include transition(all .2s linear);
+		}
+	}
+
+	input {
+		display: none;
+
+		&:not(:checked)+label {
+			cursor: pointer;
+
+			&:hover {
+				background: $acc-head-bg;
+				color: $white;
+				@include transition(all .2s ease);
+
+				&:before {
+					margin: 0 5px;
+				}
+			}
+		}
+
+		&:checked {
+			+label {
+
+				&,
+				&:hover {
+					color: $acc-head-color;
+					font-weight: bold;
+					border-bottom: 2px solid rgba($white, .6);
+
+					&:before {
+						font-weight: 900;
+						margin: 0 15px 0 5px;
+						@include rotate();
+					}
+				}
+			}
+
+			~article {
+				height: 600px;
+				overflow-y: scroll;
+				@include transition(height 0.5s ease-in-out, box-shadow 0.1s linear);
+				border: 1px solid $acc-content-bdr;
+
+				&.smallPane {
+					height: 300px;
+				}
+			}
+		}
+	}
+
+	article {
+		background: $acc-content-bg;
+		margin-top: -1px;
+		overflow: hidden;
+		height: 0;
+		position: relative;
+		z-index: 10;
+		@include transition(height 0.3s ease-in-out, box-shadow 0.6s linear);
+
+		>p,
+		>div {
+			color: $acc-content-color;
+			padding: 20px;
+		}
+	}
+
+	.reference,
+	.employer,
+	.education {
+		margin: 20px;
+
+		&:not(:last-child) {
+			border-bottom: 1px dashed $ref-divider-color;
+		}
+
+		&:first-child {
+			margin-top: 0;
+		}
+	}
+}
+
+#employerList,
+#educationList {
+
+	.employer,
+	.education {
+
+		.jobPosition,
+		.eduEvent {
+			font-size: 24px;
+			display: block;
+			margin-bottom: -5px;
+			text-shadow: 2px 2px 3px $job-title-shadow;
+		}
+
+		.jobEmployer,
+		.eduProvider a {
+			font-weight: bold;
+			color: $job-employer-color;
+			text-shadow: 1px 1px $job-employer-shadow-color;
+		}
+
+		.jobAddress,
+		.eduLocation {
+			color: $job-address-color;
+			font-size: .8rem;
+		}
+
+		.jobEmployer,
+		.jobStart,
+		.eduProvider a {
+			&:after {
+				content: '-';
+				margin: 0;
+				padding: 0 10px;
+			}
+		}
+
+		.eduProvider a {
+			border-bottom: 1px dotted;
+			@include transition(all .2s ease);
+
+			&:hover,
+			&:active {
+				color: $provider-over-color;
+				border-bottom-style: solid;
+			}
+
+			&:after {
+				font-family: 'Font Awesome 5 Free';
+				content: '\f35d';
+				font-size: .8rem;
+				font-weight: 900;
+				padding-right: 0;
+				vertical-align: text-bottom;
+			}
+		}
+
+		.jobEmployer,
+		.jobAddress,
+		.eduAward {
+			font-style: italic;
+			display: inline-block;
+		}
+
+		.jobDates,
+		.eduDate {
+			float: right;
+			margin-top: 5px;
+		}
+
+		.jobStart,
+		.jobEnd,
+		.eduDate {
+			display: inline-block;
+			font-size: .8rem;
+			background: $job-date-bg;
+			border-radius: 0 $date-bdr-radius $date-bdr-radius 0;
+			padding: 2px 5px 2px 0;
+			opacity: .5;
+		}
+
+		.jobStart {
+			border-radius: $date-bdr-radius 0 0 $date-bdr-radius;
+			margin-left: 10px;
+			padding: 2px 0 2px 5px;
+		}
+
+		.eduDate {
+			border-radius: $date-bdr-radius;
+			padding: 2px 5px;
+		}
+
+		.jobDescription,
+		.eduDescription {
+			margin: 10px 0;
+
+			.sectionHeading {
+				font-size: 1.2rem;
+				margin: 5px 0;
+
+				+ul {
+					margin-bottom: 15px;
+					margin-left: 10px;
+				}
+			}
+
+			li {
+				list-style-type: circle;
+				margin-left: 20px;
+			}
+		}
+	}
+}
+
+#proficientSkills,
+#learningSkills {
+	margin: 10px;
+
+	p {
+		font-weight: bold;
+		display: inline-block;
+	}
+
+	ul {
+		display: inline-flex;
+		list-style: none;
+		font-weight: normal;
+
+		li {
+			//opacity: .5;
+			color: $skills-color;
+			font-style: italic;
+			font-size: .9rem;
+			margin-right: 5px;
+			white-space: nowrap;
+
+			&:after {
+				content: ',';
+			}
+
+			&:last-child:after {
+				content: '';
+			}
+		}
+	}
+}
+
+#referenceList {
+	.reference {
+		>.refDetails {
+			font-style: italic;
+
+			& p {
+
+				&:first-child:before,
+				&:last-child:after {
+					color: $ref-quote-color;
+					font-family: 'Font Awesome 5 Free';
+					font-weight: 900;
+				}
+
+				&:first-child:before {
+					content: '\f10d';
+					margin-right: 10px;
+				}
+
+				&:last-child:after {
+					content: '\f10e';
+					margin-left: 10px;
+				}
+			}
+		}
+
+		>.refAuthor,
+		>.refTitle,
+		>.refDate {
+			text-align: right;
+			text-shadow: 1px 1px $ref-shadow-color;
+		}
+
+		>.refTitle,
+		>.refDate {
+			font-style: italic;
+		}
+
+		>.refAuthor {
+			font-weight: bold;
+			color: $ref-author-color;
+			margin-top: 10px;
+		}
+
+		>.refTitle {
+			color: $ref-title-color;
+			font-size: .8rem;
+		}
+
+		>.refDate {
+			font-size: .7rem;
+			color: $ref-date-color;
+		}
+	}
+}

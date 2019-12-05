@@ -1,0 +1,211 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,500,800);
+
+#appNavbar {
+	font-family: 'Raleway', Arial, sans-serif;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: 500;
+	width: 100%;
+	height: 65px;
+
+	* {
+		box-sizing: border-box;
+		@include transition(all .35s ease);
+	}
+
+	.appNavLink {
+		display: inline-block;
+		vertical-align: top;
+		margin: 20px 1.5em 0;
+		overflow: hidden;
+
+		a {
+			padding: 0.3em 0;
+			color: $nav-link-color;
+			position: relative;
+			display: inline-block;
+			letter-spacing: 1px;
+			margin: 0;
+			text-decoration: none;
+
+			&:not(.nestedLink) {
+
+				&:before,
+				&:after {
+					position: absolute;
+					box-sizing: border-box;
+					@include transition(all .35s ease);
+				}
+
+				&:before {
+					bottom: 100%;
+					display: block;
+					height: 3px;
+					width: 100%;
+					content: "";
+					background-color: $nav-link-decoraction;
+				}
+
+				&:after {
+					padding: 0.3em 0;
+					position: absolute;
+					bottom: 100%;
+					left: 0;
+					content: attr(data-hover);
+					color: $nav-link-hover;
+					white-space: nowrap;
+				}
+			}
+		}
+
+		&.socialMenu {
+			margin: 0;
+			display: none;
+		}
+
+		&:hover a:not(.nestedLink),
+		>a.is-active:not(.nestedLink) {
+			transform: translateY(100%);
+		}
+	}
+
+	.logoHolder {
+		margin: 5px 10px;
+		height: 80px;
+
+		&:hover,
+		&:active {
+			border: none;
+		}
+
+		#dgLogo {
+			width: auto;
+			height: 100%;
+			fill: $logo-color;
+			@include filter(drop-shadow(2px 2px 0 $logo-shadow));
+		}
+
+		@include touch {
+			position: absolute;
+			top: 0;
+			left: 50%;
+			margin-left: -10px;
+		}
+	}
+
+	@include touch {
+		height: 0;
+
+		.appNavLink {
+			display: none;
+			opacity: 0;
+			@include transition(opacity 1s ease-in-out);
+		}
+	}
+}
+
+#mobile-nav-icon {
+	@extend .is-hidden-desktop;
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+	top: 0;
+	right: 0;
+	position: absolute;
+	margin: 10px;
+	opacity: .5;
+	@include transform(rotate(0deg));
+	@include transition(all .5s ease-in-out);
+
+	&:hover,
+	&:active,
+	&:focus {
+		opacity: 1;
+		outline: none;
+	}
+
+	span {
+		display: block;
+		position: absolute;
+		height: 2px;
+		width: 100%;
+		background: $white;
+		opacity: 1;
+		left: 0;
+		@include transform(rotate(0deg));
+		@include transition(all .25s ease-in-out);
+
+
+		&:nth-child(1) {
+			top: 0;
+		}
+
+		&:nth-child(2) {
+			top: 10px;
+		}
+
+		&:nth-child(3) {
+			top: 20px;
+		}
+	}
+
+	&.open span {
+		&:nth-child(1) {
+			top: 10px;
+			@include transform(rotate(135deg));
+		}
+
+		&:nth-child(2) {
+			opacity: 0;
+			left: -60px;
+		}
+
+		&:nth-child(3) {
+			top: 10px;
+			@include transform(rotate(-135deg));
+		}
+	}
+
+	&.open {
+		+#appNavbar {
+			@include touch {
+				margin-top: 95px;
+				padding: 10px 10px 95px;
+				height: 100vh;
+				overflow-y: scroll;
+
+				.appNavLink {
+					display: list-item;
+					text-align: left;
+
+					opacity: 1;
+
+					.linkParent {
+						display: none;
+					}
+
+					.has-dropdown {
+						border-top: 1px dotted $touch-divider;
+					}
+
+					.nestedLink {
+						display: list-item;
+						text-align: left;
+						padding: 10px;
+					}
+
+					&.socialMenu {
+						margin-top: 10px;
+					}
+				}
+
+				a.navbar-item.is-active,
+				a.navbar-item:hover,
+				a.navbar-link.is-active,
+				a.navbar-link:hover {
+					background-color: $nav-link-bg-hover;
+				}
+			}
+		}
+	}
+}
