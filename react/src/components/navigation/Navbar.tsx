@@ -21,12 +21,11 @@ export class Navbar extends React.Component<INavbarProps, INavbarState> {
 	}
 
 	public toggleBurger: IArrowFunction = (): void => {
-		console.log('Burger Menu Clicked');
 		const burgerActive: boolean = !this.state.burgerActive;
 
 		this.setState({ burgerActive: burgerActive });
 		this.props.setMenuState(burgerActive);
-	}
+	};
 
 	public render(): React.ReactNode {
 		return (
@@ -59,9 +58,13 @@ export class Navbar extends React.Component<INavbarProps, INavbarState> {
 										<div className='appNavLink socialMenu'>
 											<div className='has-dropdown is-hoverable'>
 												<div className='navbar-dropdown is-boxed'>
-													{dataContext.social.map((link: ISocialAccountData): JSX.Element => {
-														return <SocialItem key={link.id} {...link} isMobile={true} />;
-													})}
+													{dataContext.social.map(
+														(link: ISocialAccountData): JSX.Element => {
+															return (
+																<SocialItem key={link.id} {...link} isMobile={true} />
+															);
+														},
+													)}
 												</div>
 											</div>
 										</div>

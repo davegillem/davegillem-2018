@@ -118,6 +118,7 @@ export const checkHTTPStatus: IArrowFunction = (code: number): IStatusObj => {
 		code: code,
 		message: STATUS_CODES[code],
 	};
+
 	Object.keys(STATUS).map((errorKey: string) => {
 		statusObj[errorKey] = STATUS[errorKey][code] === true;
 	});

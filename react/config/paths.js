@@ -2,29 +2,29 @@ const path = require('path');
 const fs = require('fs');
 const url = require('url');
 
-const appDirectory = fs.realpathSync(process.cwd()); // eslint-disable-line
-const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
+const appDirectory = fs.realpathSync(process.cwd());
+const resolveApp = (relativePath) => {
+	return path.resolve(appDirectory, relativePath);
+};
 
-const envPublicUrl = process.env.PUBLIC_URL; // eslint-disable-line
+const envPublicUrl = process.env.PUBLIC_URL;
 
-function ensureSlash(filepath, needsSlash) {
-	const hasSlash = filepath.endsWith('/');
+function ensureSlash(inputPath, needsSlash) {
+	const hasSlash = inputPath.endsWith('/');
 	if (hasSlash && !needsSlash) {
-		return filepath.substr(filepath, filepath.length - 1);
+		return inputPath.substr(inputPath, inputPath.length - 1);
 	} else if (!hasSlash && needsSlash) {
-		return `${filepath}/`;
+		return `${inputPath}/`;
 	} else {
-		return filepath;
+		return inputPath;
 	}
 }
 
-const getPublicUrl = appPackageJson => envPublicUrl || require(appPackageJson)
-	.homepage;
+const getPublicUrl = (appPackageJson) => envPublicUrl || require(appPackageJson).homepage;
 
 function getServedPath(appPackageJson) {
 	const publicUrl = getPublicUrl(appPackageJson);
-	const servedUrl = envPublicUrl || (publicUrl ? url.parse(publicUrl)
-		.pathname : '/');
+	const servedUrl = envPublicUrl || (publicUrl ? url.parse(publicUrl).pathname : '/');
 	return ensureSlash(servedUrl, true);
 }
 
@@ -39,7 +39,7 @@ const moduleFileExtensions = [
 	'tsx',
 	'json',
 	'web.jsx',
-	'jsx'
+	'jsx',
 ];
 
 module.exports = {
@@ -53,11 +53,10 @@ module.exports = {
 	appPath: resolveApp('.'),
 	appPublic: resolveApp('public'),
 	appSrc: resolveApp('src'),
-	appTsConfig: resolveApp('tsconfig.json'),
-	appTsLint: resolveApp('tslint.json'),
+	appTsConfig: resolveApp('tsconfig.test.json'),
 	appTsProdConfig: resolveApp('tsconfig.prod.json'),
 	dotenv: resolveApp('.env'),
 	publicUrl: getPublicUrl(resolveApp('package.json')),
-	servedPath: getServedPath(resolveApp('package.json'))
+	servedPath: getServedPath(resolveApp('package.json')),
 };
 module.exports.moduleFileExtensions = moduleFileExtensions;

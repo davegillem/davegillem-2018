@@ -9,7 +9,7 @@
 	input[type='email'] {
 		background-color: $soft-bg;
 		border-color: $input-bdr;
-		color: $white;
+		color: $main-text-color;
 
 		&:focus,
 		&:active {
@@ -18,35 +18,32 @@
 
 		@include placeholderText {
 			font-weight: normal;
-			font-size: .9rem;
+			font-size: 0.9rem;
 			font-style: italic;
 			color: $placeholder-color;
 		}
-
-		;
 	}
 
 	.label {
-		color: $white;
+		color: $form-labels;
 
 		.required:after {
 			content: '[ required ]';
-			font-size: .7em;
+			font-size: 0.7em;
 			float: right;
-			opacity: .3;
+			opacity: 0.3;
 			margin-top: 5px;
 		}
 	}
 
-	.control.has-icons-left .input:focus~.icon,
-	.control.has-icons-left .select:focus~.icon,
-	.control.has-icons-right .input:focus~.icon,
-	.control.has-icons-right .select:focus~.icon {
+	.control.has-icons-left .input:focus ~ .icon,
+	.control.has-icons-left .select:focus ~ .icon,
+	.control.has-icons-right .input:focus ~ .icon,
+	.control.has-icons-right .select:focus ~ .icon {
 		color: $input-icon-color;
 	}
 
 	.button.is-text {
-
 		&:hover,
 		&:active {
 			background-color: $reset-btn-over-bg;
@@ -75,7 +72,7 @@
 	.textarea.is-danger {
 		border-color: $error-bg;
 
-		+.icon {
+		+ .icon {
 			color: $error-bg;
 		}
 	}
@@ -96,12 +93,12 @@
 	.contact-buzzoff {
 		margin-bottom: 15px;
 		font-style: italic;
-		color: rgba(255, 255, 255, .5);
+		color: $buzz-off-color;
 		padding-bottom: 10px;
-		border-bottom: 1px solid rgba(255, 255, 255, .3);
+		border-bottom: 1px solid $buzz-off-border;
 
 		strong {
-			color: $white;
+			color: $main-text-color;
 		}
 	}
 }

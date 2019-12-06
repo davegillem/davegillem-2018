@@ -1,13 +1,5 @@
 import * as React from 'react';
-import {
-	getData,
-	getEducation,
-	getEmployers,
-	getPages,
-	getReferences,
-	getSocial,
-	startLogger
-	} from 'utilities';
+import { getData, getEducation, getEmployers, getPages, getReferences, getSocial, startLogger } from 'utilities';
 import { MainContainer } from 'pages';
 import { Navbar, PageLoader } from 'components';
 import { TEXT_KEYS } from 'data';
@@ -41,7 +33,7 @@ export class App extends React.Component<ILoadedState, IAppState> {
 			work: [],
 		};
 	}
-	public processData = (serverData: IServerData): void => {
+	public processData: IArrowFunction = (serverData: IServerData): void => {
 		const tempPages: IPage = {};
 		const { pageItems, ...other }: IServerData = serverData;
 
@@ -49,8 +41,8 @@ export class App extends React.Component<ILoadedState, IAppState> {
 			tempPages[page.slug] = page;
 		});
 		this.setState({ pages: tempPages, ...other, isLoading: false });
-	}
-	public whichAnimationEvent = (): string => {
+	};
+	public whichAnimationEvent: IArrowFunction = (): string => {
 		const el: HTMLElement | null = document.getElementById(this.loadingID);
 		const animations: object = {
 			animation: 'animationend',
@@ -68,7 +60,7 @@ export class App extends React.Component<ILoadedState, IAppState> {
 		}
 
 		return '';
-	}
+	};
 	public componentDidMount(): void {
 		// check to see if logo is done animating so it doesn't cut off
 		const el: HTMLElement | null = document.getElementById(this.loadingID);
@@ -84,33 +76,26 @@ export class App extends React.Component<ILoadedState, IAppState> {
 			Promise<ISocialAccountData[]>,
 			Promise<IEmployerData[]>,
 			Promise<IEducationData[]>,
-			Promise<IReferenceData[]>
+			Promise<IReferenceData[]>,
 		] = [
-				getData(getPages),
-				getData(getSocial),
-				getData(getEmployers),
-				getData(getEducation),
-				getData(getReferences),
-			];
+			getData(getPages),
+			getData(getSocial),
+			getData(getEmployers),
+			getData(getEducation),
+			getData(getReferences),
+		];
 
 		try {
-			Promise.all(apiCalls)
-				.then((
-					[
-						pageItems,
-						social,
-						work,
-						education,
-						references,
-					]:
-						[
-							IPageData[],
-							ISocialAccountData[],
-							IEmployerData[],
-							IEducationData[],
-							IReferenceData[]
-						]
-				): void => {
+			Promise.all<IPageData[], ISocialAccountData[], IEmployerData[], IEducationData[], IReferenceData[]>(
+				apiCalls,
+			).then(
+				([pageItems, social, work, education, references]: [
+					IPageData[],
+					ISocialAccountData[],
+					IEmployerData[],
+					IEducationData[],
+					IReferenceData[],
+				]): IPromiseResponse => {
 					const serverData: IServerData = {
 						education: education,
 						pageItems: pageItems,
@@ -120,25 +105,26 @@ export class App extends React.Component<ILoadedState, IAppState> {
 					};
 
 					this.processData(serverData);
-				});
+				},
+			);
 		} catch (err) {
 			console.log(err);
 		}
 	}
-	public setMobileMenu = (menuOpen: boolean): void => {
+	public setMobileMenu: IArrowFunction = (menuOpen: boolean): void => {
 		this.setState({ mobileMenuOpen: menuOpen });
-	}
+	};
 	public render(): React.ReactNode {
 		return (
 			<div id='appMain' itemScope={true} itemType='http://schema.org/WebPage'>
 				{this.state.isLoading || this.state.loaderAnimating ? (
 					<PageLoader loadingID={this.loadingID} />
 				) : (
-						<DataContext.Provider value={this.state}>
-							<Navbar setMenuState={this.setMobileMenu} />
-							<MainContainer mobileNav={this.state.mobileMenuOpen} />
-						</DataContext.Provider>
-					)}
+					<DataContext.Provider value={this.state}>
+						<Navbar setMenuState={this.setMobileMenu} />
+						<MainContainer mobileNav={this.state.mobileMenuOpen} />
+					</DataContext.Provider>
+				)}
 			</div>
 		);
 	}

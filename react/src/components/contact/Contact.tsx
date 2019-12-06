@@ -1,7 +1,7 @@
 import * as React from 'react';
 import classnames from 'classnames';
-import ReeValidate from 'ree-validate';
 import { TEXT_KEYS } from 'data';
+// import ReeValidate from 'ree-validate';
 
 type IContactProps = IPageData;
 
@@ -10,26 +10,26 @@ export class Contact extends React.Component<IContactProps, IContactForm> {
 	private textKeys: ITextKeys = TEXT_KEYS;
 	constructor(props: IContactProps) {
 		super(props);
-		this.validator = new ReeValidate({
-			contactEmail: 'required|email',
-			contactMsg: 'required|min:3',
-			contactName: 'required|min:3',
-		});
+		// this.validator = new ReeValidate.Validator({
+		// 	contactEmail: 'required|email',
+		// 	contactMsg: 'required|min:3',
+		// 	contactName: 'required|min:3',
+		// });
 		this.state = {
 			contactEmail: '',
 			contactMsg: '',
 			contactName: '',
-			errors: this.validator.errors,
+			// errors: '', // this.validator.errors,
 			formSubmitted: false,
 		};
 
-		this.checkValidation = this.checkValidation.bind(this);
+		// this.checkValidation = this.checkValidation.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 		this.validateBeforeSubmit = this.validateBeforeSubmit.bind(this);
 	}
 
 	public render(): React.ReactNode {
-		const { errors }: IContactForm = this.state;
+		// const { errors }: IContactForm = this.state;
 
 		return (
 			<div className='container' id='contact-form' itemScope={true} itemType='http://schema.org/ContactPage'>
@@ -53,17 +53,17 @@ export class Contact extends React.Component<IContactProps, IContactForm> {
 								name='contactName'
 								id='contactName'
 								value={this.state.contactName}
-								className={classnames('input', { 'is-danger': errors.has('contactName') })}
+								className={classnames('input')} // , { 'is-danger': errors.has('contactName') })}
 								type='text'
 								required={true}
 								placeholder={this.textKeys.contact.nameDefault}
 								onChange={this.handleChange}
-								onBlur={this.checkValidation}
+								// onBlur={this.checkValidation}
 								autoFocus={true}
 							/>
-							{errors.has('contactName') && (
+							{/* {errors.has('contactName') && (
 								<span className='help is-danger'>{this.textKeys.errors.nameRequired}</span>
-							)}
+							)} */}
 						</div>
 					</div>
 					<div className='field'>
@@ -76,19 +76,19 @@ export class Contact extends React.Component<IContactProps, IContactForm> {
 								name='contactEmail'
 								id='contactEmail'
 								value={this.state.contactEmail}
-								className={classnames('input', { 'is-danger': errors.has('contactEmail') })}
+								className={classnames('input')} // , { 'is-danger': errors.has('contactEmail') })}
 								type='email'
 								required={true}
 								placeholder={this.textKeys.contact.emailDefault}
 								onChange={this.handleChange}
-								onBlur={this.checkValidation}
+								// onBlur={this.checkValidation}
 							/>
 							<span className='icon is-small is-left'>
 								<i className='fas fa-envelope' />
 							</span>
-							{errors.has('contactEmail') && (
+							{/* {errors.has('contactEmail') && (
 								<span className='help is-danger'>{this.textKeys.errors.emailFormat}</span>
-							)}
+							)} */}
 						</div>
 					</div>
 					<div className='field'>
@@ -101,15 +101,15 @@ export class Contact extends React.Component<IContactProps, IContactForm> {
 								name='contactMsg'
 								id='contactMsg'
 								value={this.state.contactMsg}
-								className={classnames('textarea', { 'is-danger': errors.has('contactMsg') })}
+								className={classnames('textarea')} // , { 'is-danger': errors.has('contactMsg') })}
 								required={true}
 								placeholder={this.textKeys.contact.messageDefault}
 								onChange={this.handleChange}
-								onBlur={this.checkValidation}
+								// onBlur={this.checkValidation}
 							/>
-							{errors.has('contactMsg') && (
+							{/* {errors.has('contactMsg') && (
 								<span className='help is-danger'>{this.textKeys.errors.msgRequired}</span>
-							)}
+							)} */}
 						</div>
 					</div>
 					<div className='field is-grouped'>
@@ -131,33 +131,33 @@ export class Contact extends React.Component<IContactProps, IContactForm> {
 			</div>
 		);
 	}
-	private handleChange = (evt: IEvent): void => {
+	private handleChange: IArrowFunction = (evt: IEvent): void => {
 		const target: HTMLInputElement = evt.target;
 		const value: string | boolean = target.type === 'checkbox' ? target.checked : target.value;
 		const name: string = target.name;
-		const { errors }: IContactForm = this.validator;
+		// const { errors }: IContactForm = this.validator;
 
 		// reset errors for url field
-		errors.remove(name);
+		// errors.remove(name);
 
 		this.setState({
 			[name]: value,
 		} as Pick<IContactForm, keyof IContactForm>);
-	}
+	};
 
-	private checkValidation = (evt: IEvent): void => {
-		const target: HTMLInputElement = evt.target;
-		const value: string | boolean = target.type === 'checkbox' ? target.checked : target.value;
-		const name: string = target.name;
-		const { errors }: IContactForm = this.validator;
+	// private checkValidation: IArrowFunction = (evt: IEvent): void => {
+	// 	const target: HTMLInputElement = evt.target;
+	// 	const value: string | boolean = target.type === 'checkbox' ? target.checked : target.value;
+	// 	const name: string = target.name;
+	// 	// const { errors }: IContactForm = this.validator;
 
-		this.validator.validate(name, value).then(() => {
-			console.log('ERRORS', errors, errors.items, errors.items.length);
-			this.setState({ errors });
-		});
-	}
+	// 	// this.validator.validate(name, value).then(() => {
+	// 	// 	console.log('ERRORS', errors, errors.items, errors.items.length);
+	// 	// 	this.setState({ errors });
+	// 	// });
+	// };
 
-	private submit = (formData: IContactFields): void => {
+	private submit: IArrowFunction = (formData: IContactFields): void => {
 		console.log('SUBMITTING FORM', formData, JSON.stringify(formData));
 		const proxyurl: string = 'https://cors-anywhere.herokuapp.com/';
 
@@ -169,36 +169,41 @@ export class Contact extends React.Component<IContactProps, IContactForm> {
 			},
 			method: 'POST',
 		}).then((response: IPromiseResponse) => {
-			console.log('Successful' + response);
+			console.log(`Successful ${response}`);
 		});
-	}
-	private resetForm = (e: IEvent): void => {
+	};
+	private resetForm: IArrowFunction = (e: IEvent): void => {
 		e.preventDefault();
 		this.setState({
 			contactEmail: '',
 			contactMsg: '',
 			contactName: '',
 		});
-	}
-	private validateBeforeSubmit = (evt: IEvent): void => {
+	};
+	private validateBeforeSubmit: IArrowFunction = (evt: IEvent): void => {
 		evt.preventDefault();
 		const formData: IContactFields = {
 			contactEmail: this.state.contactEmail,
 			contactMsg: this.state.contactMsg,
 			contactName: this.state.contactName,
 		};
-		const { errors }: IContactForm = this.validator;
 
-		this.validator.validateAll(formData).then((success: IValidationSuccess) => {
-			if (success) {
-				this.setState({ formSubmitted: true });
-				this.submit(formData);
-				return true;
-			} else {
-				this.setState({ errors: errors });
-				return false;
-			}
-		});
+		if (formData.contactEmail.length && formData.contactMsg.length && formData.contactName.length) {
+			this.setState({ formSubmitted: true });
+			this.submit(formData);
+		}
+
+		// const { errors }: IContactForm = this.validator;
+
+		// this.validator.validateAll(formData).then((success: IValidationSuccess) => {
+		// 	if (success) {
+		// 		this.setState({ formSubmitted: true });
+		// 		this.submit(formData);
+		// 		return true;
+		// 	}
+		// 	this.setState({ errors: errors });
+		// 	return false;
+		// });
 		console.log('VALIDATING FORM');
-	}
+	};
 }

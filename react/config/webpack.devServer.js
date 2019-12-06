@@ -9,7 +9,7 @@ const fs = require('fs');
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 const host = process.env.HOST || '0.0.0.0';
 
-module.exports = function (proxy, allowedHost) {
+module.exports = function(proxy, allowedHost) {
 	return {
 		disableHostCheck: !proxy || process.env.DANGEROUSLY_DISABLE_HOST_CHECK === 'true',
 		compress: true,
@@ -20,13 +20,13 @@ module.exports = function (proxy, allowedHost) {
 		publicPath: '/',
 		quiet: true,
 		watchOptions: {
-			ignored: ignoredFiles(paths.appSrc)
+			ignored: ignoredFiles(paths.appSrc),
 		},
 		https: protocol === 'https',
 		host,
 		overlay: false,
 		historyApiFallback: {
-			disableDotRule: true
+			disableDotRule: true,
 		},
 		public: allowedHost,
 		proxy,
@@ -34,6 +34,6 @@ module.exports = function (proxy, allowedHost) {
 			app.use(evalSourceMapMiddleware(server));
 			app.use(errorOverlayMiddleware());
 			app.use(noopServiceWorkerMiddleware());
-		}
+		},
 	};
 };

@@ -11,12 +11,7 @@ export class ContactContainer extends React.Component<ILoadedState, {}> {
 		return (
 			<DataContext.Consumer>
 				{(dataContext: IDataContext): React.ReactNode => {
-					return (
-						<Contact
-							{...dataContext.pages.contact}
-							textKeys={dataContext.textKeys}
-						/>
-					);
+					return <Contact {...dataContext.pages.contact} textKeys={dataContext.textKeys} />;
 				}}
 			</DataContext.Consumer>
 		);

@@ -12,9 +12,7 @@ export class AboutContainer extends React.Component<ILoadedState, {}> {
 		return (
 			<DataContext.Consumer>
 				{(dataContext: IDataContext): React.ReactNode => {
-					return (
-						<About {...dataContext.pages.about} />
-					);
+					return <About {...dataContext.pages.about} />;
 				}}
 			</DataContext.Consumer>
 		);

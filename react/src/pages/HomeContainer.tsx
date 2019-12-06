@@ -12,9 +12,7 @@ export class HomeContainer extends React.Component<ILoadedState, {}> {
 		return (
 			<DataContext.Consumer>
 				{(dataContext: IDataContext): React.ReactNode => {
-					return (
-						<Home {...dataContext.pages.home} />
-					);
+					return <Home {...dataContext.pages.home} />;
 				}}
 			</DataContext.Consumer>
 		);
