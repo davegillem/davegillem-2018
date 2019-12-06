@@ -21,7 +21,6 @@ export class Navbar extends React.Component<INavbarProps, INavbarState> {
 	}
 
 	public toggleBurger: IArrowFunction = (): void => {
-		console.log('Burger Menu Clicked');
 		const burgerActive: boolean = !this.state.burgerActive;
 
 		this.setState({ burgerActive: burgerActive });

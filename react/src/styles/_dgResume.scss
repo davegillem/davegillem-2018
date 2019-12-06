@@ -8,7 +8,7 @@
 		z-index: 20;
 		display: block;
 		@include trueheight(50px);
-		color: $acc-head-sel-color;
+		color: $acc-head-color;
 		font-size: 25px;
 		background: transparent;
 		font-family: $header-fonts;
@@ -49,8 +49,8 @@
 			+ label {
 				&,
 				&:hover {
-					color: $acc-head-color;
-					font-weight: bold;
+					color: $acc-head-sel-color;
+					//font-weight: bold;
 					border-bottom: 2px solid rgba($acc-content-bdr, 0.6);
 
 					&:before {

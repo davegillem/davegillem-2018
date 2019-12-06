@@ -110,6 +110,10 @@ a:not(.icon) {
 	background-color: $soft-bg;
 }
 
+.control.has-icons-left .icon,
+.control.has-icons-right .icon {
+	color: $input-icon-color;
+}
 .noAnimation {
 	@include animation(none);
 }

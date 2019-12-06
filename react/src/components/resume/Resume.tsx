@@ -49,7 +49,6 @@ export class Resume extends React.Component<IResumeProps, IResumeState> {
 						/>
 						<label htmlFor='resumework'>{this.textKeys.resume.employers}</label>
 						<article>
-							{console.log('PROPS', this.props, this.props.work)}
 							{this.props.work.map((employer: IEmployerData) => {
 								return (
 									<Employer
