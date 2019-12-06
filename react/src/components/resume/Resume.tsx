@@ -17,11 +17,11 @@ export class Resume extends React.Component<IResumeProps, IResumeState> {
 			selectedItem: 'resumeSummary',
 		};
 	}
-	public handleOptionChange = (evt: IEvent): void => {
+	public handleOptionChange: IArrowFunction = (evt: IEvent): void => {
 		this.setState({
 			selectedItem: evt.target.id,
 		});
-	}
+	};
 	public render(): React.ReactNode {
 		return (
 			<div>
@@ -34,7 +34,7 @@ export class Resume extends React.Component<IResumeProps, IResumeState> {
 							onChange={this.handleOptionChange}
 							type='radio'
 						/>
-						<label htmlFor='resumeSummary'>{this.props.title.rendered}</label>
+						<label htmlFor='resumeSummary'>{this.textKeys.resume.overview}</label>
 						<article className='smallPane'>
 							<p dangerouslySetInnerHTML={{ __html: this.props.content.rendered }} />
 						</article>
@@ -47,9 +47,8 @@ export class Resume extends React.Component<IResumeProps, IResumeState> {
 							onChange={this.handleOptionChange}
 							type='radio'
 						/>
-						<label htmlFor='resumework'>work</label>
+						<label htmlFor='resumework'>{this.textKeys.resume.employers}</label>
 						<article>
-							{console.log('PROPS', this.props, this.props.work)}
 							{this.props.work.map((employer: IEmployerData) => {
 								return (
 									<Employer
@@ -69,7 +68,7 @@ export class Resume extends React.Component<IResumeProps, IResumeState> {
 							type='radio'
 							onChange={this.handleOptionChange}
 						/>
-						<label htmlFor='resumeEducation'>Education / Certifications</label>
+						<label htmlFor='resumeEducation'>{this.textKeys.resume.education}</label>
 						<article>
 							{this.props.education.map((cert: IEducationData) => {
 								return <Education key={cert.id} {...cert} />;
@@ -84,7 +83,7 @@ export class Resume extends React.Component<IResumeProps, IResumeState> {
 							onChange={this.handleOptionChange}
 							type='radio'
 						/>
-						<label htmlFor='resumeReferences'>References</label>
+						<label htmlFor='resumeReferences'>{this.textKeys.resume.references}</label>
 						<article>
 							{this.props.references.map((ref: IReferenceData) => {
 								return <Reference key={ref.id} {...ref} />;

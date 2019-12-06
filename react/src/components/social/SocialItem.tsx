@@ -18,8 +18,8 @@ export const SocialItem: React.StatelessComponent<ISocialItemProps> = (props: IS
 			{props.isMobile ? (
 				getSocialLink(props, `navbar-item nestedLink icon-menu-${props.slug}`)
 			) : (
-					<li data-dgtip={props.title.rendered}>{getSocialLink(props, `icon icon-${props.slug}`)}</li>
-				)}
+				<li data-dgtip={props.title.rendered}>{getSocialLink(props, `icon icon-${props.slug}`)}</li>
+			)}
 		</>
 	);
 };

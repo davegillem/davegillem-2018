@@ -1,0 +1,7 @@
+.git/*
+build/*
+config/*
+docs/*
+node_modules/*
+public/*
+scripts/*

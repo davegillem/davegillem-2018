@@ -45,6 +45,7 @@ interface INavKeys {
 interface IResume {
 	education: string;
 	employers: string;
+	overview: string;
 	references: string;
 	resume: string;
 }

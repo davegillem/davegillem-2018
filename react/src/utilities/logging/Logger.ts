@@ -33,14 +33,14 @@ export const DEBUG: boolean = getUrlVar('debug') === 'true' || isDevelopment;
 
 export const startLogger: IArrowFunction = (): void => {
 	// disable console if debug !== true and fixes console availability in IE
-	/* tslint:disable */
-	(a => {
-		function b() { }
+	/* eslint-disable */
+	((a) => {
+		function b() {}
 		for (
 			let c = 'assert,clear,count,debug,dir,dirxml,error,exception,group,groupCollapsed,groupEnd,info,log,markTimeline,profile,profileEnd,table,time,timestamp,timeEnd,trace,warn'.split(
-				','
-			),
-			d;
+					',',
+				),
+				d;
 			!!(d = c.pop());
 
 		) {
@@ -61,12 +61,12 @@ export const startLogger: IArrowFunction = (): void => {
 			} else {
 				return ((<any>window).console = <Console>{});
 			}
-		})()
+		})(),
 	);
 
 	// Place notification in the output window to indicate debugging and enable jQuery Migrate logging
 	if (DEBUG) {
 		console.warn('%cIN DEBUG MODE', DEBUGGING);
 	}
-	/* tslint:enable */
+	/* eslint-enable */
 };

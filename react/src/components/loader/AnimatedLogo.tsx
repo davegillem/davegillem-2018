@@ -13,6 +13,7 @@ interface IAnimatedLogoProps {
 
 export const AnimatedLogo: React.StatelessComponent<IAnimatedLogoProps> = (props: IAnimatedLogoProps): JSX.Element => {
 	const { id, ...strokeParams }: IAnimatedLogoProps = props;
+
 	return (
 		<svg viewBox='0 0 250 500' id={id}>
 			<path

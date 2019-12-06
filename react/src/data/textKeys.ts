@@ -34,6 +34,7 @@ export const TEXT_KEYS: ITextKeys = {
 	resume: {
 		education: 'Education / Certifications',
 		employers: 'Employers',
+		overview: 'Overview',
 		references: 'References',
 		resume: 'Résumé',
 	},

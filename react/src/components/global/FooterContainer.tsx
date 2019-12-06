@@ -12,8 +12,7 @@ export class FooterContainer extends React.Component<ILoadedState, {}> {
 			<DataContext.Consumer>
 				{(dataContext: IDataContext): JSX.Element => {
 					return <Footer footerText={dataContext.textKeys.global.footer} />;
-				}
-				}
+				}}
 			</DataContext.Consumer>
 		);
 	}

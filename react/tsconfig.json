@@ -4,14 +4,13 @@
 		"allowJs": true,
 		"allowSyntheticDefaultImports": true,
 		"baseUrl": "./src",
+		"checkJs": false,
 		"downlevelIteration": true,
 		"experimentalDecorators": true,
 		"forceConsistentCasingInFileNames": true,
+		"importHelpers": true,
 		"jsx": "react",
-		"lib": [
-			"es6",
-			"dom"
-		],
+		"lib": ["es6", "dom"],
 		"module": "es6",
 		"moduleResolution": "node",
 		"noImplicitAny": true,
@@ -21,23 +20,15 @@
 		"noUnusedParameters": false,
 		"outDir": "./build/",
 		"pretty": true,
+		// "resolveJsonModule": true,
 		"rootDir": "src",
 		"sourceMap": true,
+		"strict": true,
 		"strictNullChecks": true,
 		"suppressImplicitAnyIndexErrors": true,
-		"target": "es5"
+		"target": "es5",
+		"types": ["jest", "node"]
 	},
-	"exclude": [
-		"build/*",
-		"config/*",
-		"node_modules/*",
-		"public/*",
-		"scripts/*",
-	],
-	"include": [
-		"**/*.js",
-		"**/*.jsx",
-		"**/*.ts",
-		"**/*.tsx"
-	]
+	"include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
+	"exclude": ["build", "config", "docs", "node_modules", "public/js/**", "scripts", "webpack"]
 }

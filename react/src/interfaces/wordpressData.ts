@@ -2,43 +2,34 @@ interface IRenderedContent {
 	rendered: string;
 }
 
-interface IPageData {
+interface IWPData {
 	id: number;
 	slug: string;
 	title: IRenderedContent;
+}
+interface IPageData extends IWPData {
 	content: IRenderedContent;
 }
 interface IPage {
 	[pageName: string]: IPageData;
 }
 
-// interface ITextKeyData {
-// 	id: number;
-// 	description: string;
-// 	slug: string;
-// }
 // interface ITextKeys {
 // 	[keyName: string]: string;
 // }
 
-interface ISocialAccountData {
-	id: number;
-	slug: string;
-	url: string;
+interface ISocialAccountData extends IWPData {
 	category: string;
-	title: IRenderedContent;
+	url: string;
 }
 
-interface IEmployerData {
-	id: number;
-	slug: string;
+interface IEmployerData extends IWPData {
 	position: string;
 	start_date: string;
 	still_employed: string;
 	end_date: string;
 	location: string;
 	additional: string;
-	title: IRenderedContent;
 	content: IRenderedContent;
 }
 
@@ -47,24 +38,18 @@ interface IEmployerProps extends IEmployerData {
 	presentText: string;
 }
 
-interface IEducationData {
-	id: number;
-	slug: string;
+interface IEducationData extends IWPData {
 	award: string;
 	completion: string;
 	location: string;
 	provider: string;
 	course_type: string;
-	title: IRenderedContent;
 	content: IRenderedContent;
 }
 
-interface IReferenceData {
-	id: number;
-	slug: string;
+interface IReferenceData extends IWPData {
 	date_provided: string;
 	job_title: string;
-	title: IRenderedContent;
 	content: IRenderedContent;
 }
 

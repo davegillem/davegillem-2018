@@ -1,80 +1,175 @@
 ////////// VARIABLES \\\\\\\\\\
+// global
+$bg-image: '../assets/dg-background.png';
+$body-fonts: 'Roboto Condensed', sans-serif;
+$header-fonts: 'Playfair Display SC', serif;
+$nav-fonts: $header-fonts;
+$useShadows: true;
 // colors
-$bg-bottom:#09203f;
+$bg-bottom: #09203f;
 $bg-top: #537895;
 $loaderColor: $white;
-$menu-back: hsla(0, 10%, 2%, .85);
+$menu-back: hsla(0, 10%, 2%, 0.85);
 $placeholder-color: #797979;
-$soft-bg: hsla(0, 0%, 4%, .2);
+$soft-bg: hsla(0, 0%, 4%, 0.2);
 $transparent: rgba(0, 0, 0, 0);
-$contentHeading:#efefef;
+$contentHeading: #efefef;
 $wrapQuotes: lighten($soft-bg, 50);
+$main-text-color: $white;
+$form-labels: $white;
+$link-color: $white;
+$link-active-color: $link-color;
+$title-color: #aaa;
+$subtitle-color: $grey-light;
+$subtitle-strong-color: $grey-light;
 // Logo
 $loadingLogoFill: $soft-bg;
 $loadingLogoStroke: $loadingLogoFill;
 // Nav
 $logo-color: $white;
-$logo-shadow: $soft-bg;
+$logo-shadow: setShadow($soft-bg, $useShadows);
 $nav-link-color: rgba(255, 255, 255, 0.5);
 $nav-link-decoraction: adjust_hue(saturate(lighten($bg-top, 17), 44), 0);
 $nav-link-hover: $white;
 $nav-link-bg-hover: $soft-bg;
 // Contact
-$input-bdr: hsla(0, 0%, 90%, .3);
+$input-bdr: hsla(0, 0%, 90%, 0.3);
 $input-color: $white;
-$reset-btn-over-bg: rgba(0, 0, 0, .3);
-$reset-btn-over-color:$white;
+$reset-btn-over-bg: rgba(0, 0, 0, 0.3);
+$reset-btn-over-color: $white;
 $error-bg: #8a3a00;
 $error-color: $white;
-//$input-icon-color: #537895;
+$input-icon-color: #537895;
 $input-icon-color: #98a4ad;
+$buzz-off-color: rgba(255, 255, 255, 0.5);
+$buzz-off-border: rgba(255, 255, 255, 0.3);
 // Resume
 $acc-content-bdr: $input-bdr;
 $acc-content-bg: $soft-bg;
 $acc-content-color: #f5f5f5;
-$acc-head-bg: hsla(0, 0%, 4%, .1);
+$acc-head-bg: hsla(0, 0%, 4%, 0.1);
 $acc-head-color: $white;
 $acc-head-sel-color: $nav-link-color;
 $ref-author-color: rgba(255, 255, 255, 0.5);
 $ref-title-color: rgba(255, 255, 255, 0.3);
-$ref-shadow-color: darken($acc-content-bg, 50);
-$ref-date-color: hsla(0, 0%, 90%, .25);
-$ref-quote-color: rgba(255, 255, 255, .2);
-$ref-divider-color: rgba(255, 255, 255, .1);
+$ref-shadow-color: setShadow(darken($acc-content-bg, 50), $useShadows);
+$ref-date-color: hsla(0, 0%, 90%, 0.25);
+$ref-quote-color: rgba(255, 255, 255, 0.2);
+$ref-divider-color: rgba(255, 255, 255, 0.1);
+$edu-item-details: inherit;
 $job-date-bg: hsla(0, 0%, 4%, 0.3);
-$job-title-shadow: $job-date-bg;
+$job-title-shadow: setShadow($job-date-bg, $useShadows);
 $job-employer-color: $ref-author-color;
-$job-employer-shadow-color: $ref-shadow-color;
+$job-employer-shadow-color: setShadow($ref-shadow-color, $useShadows);
 $job-address-color: $ref-title-color;
 $date-bdr-radius: 5px;
 $provider-over-color: $white;
-$skills-color:rgba(255, 255, 255, .5);
+$skills-color: rgba(255, 255, 255, 0.5);
 // TLDR
 $social-icon-color: $white;
+$social-icon-active-color: $white;
 $social-icon-bg: $soft-bg;
 $tip-text: $white;
 $tip-bg: rgba(17, 17, 17, 0.7);
 // Touch
-$touch-bg: rgba($bg-bottom, .98);
+$touch-bg: rgba($bg-bottom, 0.98);
 $touch-divider: rgba(255, 255, 255, 0.2);
 
 // Social Networks and addl icons
-$icons: (behance: (icon: '\f1b4', color: #1769ff, font: 'Font Awesome 5 Brands'),
-dribbble: (icon: '\f17d', color: #ea4c89, font: 'Font Awesome 5 Brands'),
-codepen: (icon: '\f1cb', color: #0ebeff, font: 'Font Awesome 5 Brands'),
-code-school: (icon: '\f053 \f054', color: #616f67, font: 'Font Awesome 5 Free'),
-facebook: (icon: '\f09a', color: #3b5998, font: 'Font Awesome 5 Brands'),
-github: (icon: '\f09b', color: #4183c4, font: 'Font Awesome 5 Brands'),
-google: (icon: '\f0d5', color: #db4437, font: 'Font Awesome 5 Brands'),
-instagram: (icon: '\f16d', color: #C32AA3, font: 'Font Awesome 5 Brands'),
-linkedin: (icon: '\f0e1', color: #0077b5, font: 'Font Awesome 5 Brands'),
-//pinterest		: (icon: '\f231',	color: #BD081C, font: 'Font Awesome 5 Brands'),
-pluralsight: (icon: '\f0da', color: #e80a89, font: 'Font Awesome 5 Free'), // need logo
-sass: (icon: '\f41e', color: #ff0000, font: 'Font Awesome 5 Brands'),
-stackoverflow: (icon: '\f16c', color: #f48024, font: 'Font Awesome 5 Brands'),
-//twitch			: (icon: '\f1e8',	color: #6441a5, font: 'Font Awesome 5 Brands'),
-twitter: (icon: '\f099', color: #0084b4, font: 'Font Awesome 5 Brands'),
-//vimeo			: (icon: '\f27d',	color: #1ab7ea, font: 'Font Awesome 5 Brands'),
-vue: (icon: '\f41f', color: #42b883, font: 'Font Awesome 5 Brands'),
-wordpress: (icon: '\f411', color: #21759b, font: 'Font Awesome 5 Brands'),
-youtube: (icon: '\f167', color: #ff0000, font: 'Font Awesome 5 Brands'));
+$icons: (
+	behance: (
+		icon: '\f1b4',
+		color: #1769ff,
+		font: 'Font Awesome 5 Brands'
+	),
+	dribbble: (
+		icon: '\f17d',
+		color: #ea4c89,
+		font: 'Font Awesome 5 Brands'
+	),
+	codepen: (
+		icon: '\f1cb',
+		color: #0ebeff,
+		font: 'Font Awesome 5 Brands'
+	),
+	code-school: (
+		icon: '\f053 \f054',
+		color: #616f67,
+		font: 'Font Awesome 5 Free'
+	),
+	facebook: (
+		icon: '\f09a',
+		color: #3b5998,
+		font: 'Font Awesome 5 Brands'
+	),
+	github: (
+		icon: '\f09b',
+		color: #4183c4,
+		font: 'Font Awesome 5 Brands'
+	),
+	google: (
+		icon: '\f0d5',
+		color: #db4437,
+		font: 'Font Awesome 5 Brands'
+	),
+	instagram: (
+		icon: '\f16d',
+		color: #c32aa3,
+		font: 'Font Awesome 5 Brands'
+	),
+	linkedin: (
+		icon: '\f0e1',
+		color: #0077b5,
+		font: 'Font Awesome 5 Brands'
+	),
+	pinterest: (
+		icon: '\f231',
+		color: #bd081c,
+		font: 'Font Awesome 5 Brands'
+	),
+	pluralsight: (
+		icon: '\f0da',
+		color: #e80a89,
+		font: 'Font Awesome 5 Free'
+	),
+	sass: (
+		icon: '\f41e',
+		color: #ff0000,
+		font: 'Font Awesome 5 Brands'
+	),
+	stackoverflow: (
+		icon: '\f16c',
+		color: #f48024,
+		font: 'Font Awesome 5 Brands'
+	),
+	twitch: (
+		icon: '\f1e8',
+		color: #6441a5,
+		font: 'Font Awesome 5 Brands'
+	),
+	twitter: (
+		icon: '\f099',
+		color: #0084b4,
+		font: 'Font Awesome 5 Brands'
+	),
+	vimeo: (
+		icon: '\f27d',
+		color: #1ab7ea,
+		font: 'Font Awesome 5 Brands'
+	),
+	vue: (
+		icon: '\f41f',
+		color: #42b883,
+		font: 'Font Awesome 5 Brands'
+	),
+	wordpress: (
+		icon: '\f411',
+		color: #21759b,
+		font: 'Font Awesome 5 Brands'
+	),
+	youtube: (
+		icon: '\f167',
+		color: #ff0000,
+		font: 'Font Awesome 5 Brands'
+	)
+);
