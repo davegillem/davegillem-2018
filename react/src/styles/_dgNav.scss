@@ -1,7 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:400,500,800);
-
 #appNavbar {
-	font-family: 'Raleway', Arial, sans-serif;
+	font-family: $nav-fonts;
 	text-align: center;
 	text-transform: uppercase;
 	font-weight: 500;
@@ -10,7 +8,7 @@
 
 	* {
 		box-sizing: border-box;
-		@include transition(all .35s ease);
+		@include transition(all 0.35s ease);
 	}
 
 	.appNavLink {
@@ -27,14 +25,14 @@
 			letter-spacing: 1px;
 			margin: 0;
 			text-decoration: none;
+			border-bottom: none;
 
 			&:not(.nestedLink) {
-
 				&:before,
 				&:after {
 					position: absolute;
 					box-sizing: border-box;
-					@include transition(all .35s ease);
+					@include transition(all 0.35s ease);
 				}
 
 				&:before {
@@ -42,7 +40,7 @@
 					display: block;
 					height: 3px;
 					width: 100%;
-					content: "";
+					content: '';
 					background-color: $nav-link-decoraction;
 				}
 
@@ -64,7 +62,7 @@
 		}
 
 		&:hover a:not(.nestedLink),
-		>a.is-active:not(.nestedLink) {
+		> a.is-active:not(.nestedLink) {
 			transform: translateY(100%);
 		}
 	}
@@ -72,6 +70,7 @@
 	.logoHolder {
 		margin: 5px 10px;
 		height: 80px;
+		border-bottom: none;
 
 		&:hover,
 		&:active {
@@ -82,7 +81,7 @@
 			width: auto;
 			height: 100%;
 			fill: $logo-color;
-			@include filter(drop-shadow(2px 2px 0 $logo-shadow));
+			@include filter(setShadow(drop-shadow(2px 2px 0 $logo-shadow), $useShadows));
 		}
 
 		@include touch {
@@ -113,9 +112,9 @@
 	right: 0;
 	position: absolute;
 	margin: 10px;
-	opacity: .5;
+	opacity: 0.5;
 	@include transform(rotate(0deg));
-	@include transition(all .5s ease-in-out);
+	@include transition(all 0.5s ease-in-out);
 
 	&:hover,
 	&:active,
@@ -129,12 +128,11 @@
 		position: absolute;
 		height: 2px;
 		width: 100%;
-		background: $white;
+		background: $link-color;
 		opacity: 1;
 		left: 0;
 		@include transform(rotate(0deg));
-		@include transition(all .25s ease-in-out);
-
+		@include transition(all 0.25s ease-in-out);
 
 		&:nth-child(1) {
 			top: 0;
@@ -167,7 +165,7 @@
 	}
 
 	&.open {
-		+#appNavbar {
+		+ #appNavbar {
 			@include touch {
 				margin-top: 95px;
 				padding: 10px 10px 95px;

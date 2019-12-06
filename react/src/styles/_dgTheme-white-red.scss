@@ -1,0 +1,86 @@
+////////// VARIABLES \\\\\\\\\\
+// global
+$bg-image: '../assets/dg-background.png';
+$body-fonts: 'Roboto Condensed', sans-serif;
+$header-fonts: 'Playfair Display SC', serif;
+$nav-fonts: $header-fonts;
+$useShadows: false;
+// Theme colors
+$theme-main: #6a1115;
+$theme-bg-bottom: #d4e3e6;
+$theme-bg-top: #e4eef0;
+$theme-content-color: $theme-main;
+$theme-header-color: $theme-main;
+$theme-content-subtext-color: rgba($theme-main, 0.7);
+$theme-link-color: #832023;
+$theme-link-active-color: darken($theme-link-color, 10);
+$mobile-nav-hover-bg: rgba(255, 255, 255, 0.5);
+$container-bg-color: rgba(lighten($theme-bg-top, 0.8), 0.6);
+$section-head-bg-color: rgba(darken($theme-bg-top, 0.8), 0.6);
+// colors
+$bg-bottom: $theme-bg-bottom;
+$bg-top: $theme-bg-top;
+$loaderColor: $theme-content-color;
+$menu-back: hsla(0, 10%, 2%, 0.85);
+$placeholder-color: #797979;
+$soft-bg: $container-bg-color;
+$transparent: rgba(0, 0, 0, 0);
+$contentHeading: $theme-content-color;
+$wrapQuotes: rgba($theme-content-color, 0.2);
+$main-text-color: $theme-main;
+$form-labels: $theme-main;
+$link-color: $theme-link-color;
+$link-active-color: $theme-link-active-color;
+$title-color: $theme-header-color;
+$subtitle-color: $theme-header-color;
+$subtitle-strong-color: $theme-header-color;
+// Logo
+$loadingLogoFill: $theme-content-color;
+$loadingLogoStroke: $loadingLogoFill;
+// Nav
+$logo-color: $theme-content-color;
+$logo-shadow: setShadow($soft-bg, $useShadows);
+$nav-link-color: $theme-link-color;
+$nav-link-decoraction: $theme-link-color;
+$nav-link-hover: $theme-link-active-color;
+$nav-link-bg-hover: $mobile-nav-hover-bg;
+// Contact
+$input-bdr: rgba($theme-link-color, 0.3);
+$input-color: $theme-content-color;
+$reset-btn-over-bg: rgba($theme-link-color, 0.3);
+$reset-btn-over-color: $theme-content-color;
+$error-bg: $theme-content-color;
+$error-color: $theme-content-color;
+$input-icon-color: $theme-link-color;
+$buzz-off-color: $theme-content-color;
+$buzz-off-border: $theme-content-color;
+// Resume
+$acc-content-bdr: $input-bdr;
+$acc-content-bg: $soft-bg;
+$acc-content-color: $theme-content-color;
+$acc-head-bg: $section-head-bg-color;
+$acc-head-color: $theme-content-color;
+$acc-head-sel-color: $theme-link-active-color;
+$ref-author-color: $theme-content-subtext-color;
+$ref-title-color: $theme-content-subtext-color;
+$ref-shadow-color: setShadow(darken($acc-content-bg, 50), $useShadows);
+$ref-date-color: $theme-content-subtext-color;
+$ref-quote-color: $theme-content-subtext-color;
+$ref-divider-color: $theme-content-subtext-color;
+$edu-item-details: rgba($acc-content-color, 0.75);
+$job-date-bg: rgba($theme-link-color, 0.3);
+$job-title-shadow: setShadow($job-date-bg, $useShadows);
+$job-employer-color: $ref-author-color;
+$job-employer-shadow-color: setShadow($ref-shadow-color, $useShadows);
+$job-address-color: $ref-title-color;
+$provider-over-color: $theme-link-active-color;
+$skills-color: $theme-content-subtext-color;
+// TLDR
+$social-icon-color: $theme-content-color;
+$social-icon-active-color: $white;
+$social-icon-bg: $soft-bg;
+$tip-text: $theme-content-color;
+$tip-bg: $job-date-bg;
+// Touch
+$touch-bg: rgba($bg-bottom, 0.98);
+$touch-divider: rgba(255, 255, 255, 0.2);

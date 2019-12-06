@@ -11,7 +11,7 @@
 		color: $acc-head-sel-color;
 		font-size: 25px;
 		background: transparent;
-		font-family: Alegreya SC, serif;
+		font-family: $header-fonts;
 		white-space: nowrap;
 
 		&:before {
@@ -23,20 +23,21 @@
 			height: 1.3rem;
 			margin-right: 15px;
 			display: inline-block;
-			@include transition(all .2s linear);
+			@include transition(all 0.2s linear);
 		}
 	}
 
 	input {
 		display: none;
+		color: $theme-link-color;
 
-		&:not(:checked)+label {
+		&:not(:checked) + label {
 			cursor: pointer;
 
 			&:hover {
 				background: $acc-head-bg;
-				color: $white;
-				@include transition(all .2s ease);
+				color: $theme-link-active-color;
+				@include transition(all 0.2s ease);
 
 				&:before {
 					margin: 0 5px;
@@ -45,13 +46,12 @@
 		}
 
 		&:checked {
-			+label {
-
+			+ label {
 				&,
 				&:hover {
 					color: $acc-head-color;
 					font-weight: bold;
-					border-bottom: 2px solid rgba($white, .6);
+					border-bottom: 2px solid rgba($acc-content-bdr, 0.6);
 
 					&:before {
 						font-weight: 900;
@@ -61,7 +61,7 @@
 				}
 			}
 
-			~article {
+			~ article {
 				height: 600px;
 				overflow-y: scroll;
 				@include transition(height 0.5s ease-in-out, box-shadow 0.1s linear);
@@ -83,8 +83,8 @@
 		z-index: 10;
 		@include transition(height 0.3s ease-in-out, box-shadow 0.6s linear);
 
-		>p,
-		>div {
+		> p,
+		> div {
 			color: $acc-content-color;
 			padding: 20px;
 		}
@@ -107,10 +107,8 @@
 
 #employerList,
 #educationList {
-
 	.employer,
 	.education {
-
 		.jobPosition,
 		.eduEvent {
 			font-size: 24px;
@@ -129,7 +127,7 @@
 		.jobAddress,
 		.eduLocation {
 			color: $job-address-color;
-			font-size: .8rem;
+			font-size: 0.8rem;
 		}
 
 		.jobEmployer,
@@ -144,7 +142,7 @@
 
 		.eduProvider a {
 			border-bottom: 1px dotted;
-			@include transition(all .2s ease);
+			@include transition(all 0.2s ease);
 
 			&:hover,
 			&:active {
@@ -155,7 +153,7 @@
 			&:after {
 				font-family: 'Font Awesome 5 Free';
 				content: '\f35d';
-				font-size: .8rem;
+				font-size: 0.8rem;
 				font-weight: 900;
 				padding-right: 0;
 				vertical-align: text-bottom;
@@ -179,11 +177,11 @@
 		.jobEnd,
 		.eduDate {
 			display: inline-block;
-			font-size: .8rem;
+			font-size: 0.8rem;
 			background: $job-date-bg;
 			border-radius: 0 $date-bdr-radius $date-bdr-radius 0;
 			padding: 2px 5px 2px 0;
-			opacity: .5;
+			opacity: 0.5;
 		}
 
 		.jobStart {
@@ -205,7 +203,7 @@
 				font-size: 1.2rem;
 				margin: 5px 0;
 
-				+ul {
+				+ ul {
 					margin-bottom: 15px;
 					margin-left: 10px;
 				}
@@ -214,6 +212,7 @@
 			li {
 				list-style-type: circle;
 				margin-left: 20px;
+				color: $edu-item-details;
 			}
 		}
 	}
@@ -237,7 +236,7 @@
 			//opacity: .5;
 			color: $skills-color;
 			font-style: italic;
-			font-size: .9rem;
+			font-size: 0.9rem;
 			margin-right: 5px;
 			white-space: nowrap;
 
@@ -254,11 +253,10 @@
 
 #referenceList {
 	.reference {
-		>.refDetails {
+		> .refDetails {
 			font-style: italic;
 
 			& p {
-
 				&:first-child:before,
 				&:last-child:after {
 					color: $ref-quote-color;
@@ -278,31 +276,31 @@
 			}
 		}
 
-		>.refAuthor,
-		>.refTitle,
-		>.refDate {
+		> .refAuthor,
+		> .refTitle,
+		> .refDate {
 			text-align: right;
 			text-shadow: 1px 1px $ref-shadow-color;
 		}
 
-		>.refTitle,
-		>.refDate {
+		> .refTitle,
+		> .refDate {
 			font-style: italic;
 		}
 
-		>.refAuthor {
+		> .refAuthor {
 			font-weight: bold;
 			color: $ref-author-color;
 			margin-top: 10px;
 		}
 
-		>.refTitle {
+		> .refTitle {
 			color: $ref-title-color;
-			font-size: .8rem;
+			font-size: 0.8rem;
 		}
 
-		>.refDate {
-			font-size: .7rem;
+		> .refDate {
+			font-size: 0.7rem;
 			color: $ref-date-color;
 		}
 	}

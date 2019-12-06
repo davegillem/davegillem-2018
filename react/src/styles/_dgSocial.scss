@@ -1,5 +1,5 @@
 #socialLinks {
-	opacity: .2;
+	opacity: 0.2;
 	@include transition(opacity 400ms);
 
 	&:hover,
@@ -38,7 +38,7 @@
 
 			&:before {
 				// Icon Background
-				content: "";
+				content: '';
 				position: absolute;
 				top: 50%;
 				left: 50%;
@@ -79,8 +79,7 @@
 		}
 
 		// Icon specific styling
-		@each $label,
-		$map in $icons {
+		@each $label, $map in $icons {
 			$iconColor: map-get($map, color);
 			$iconShadow: darken($iconColor, 10);
 
@@ -104,6 +103,7 @@
 
 					&:after {
 						text-shadow: 2px 2px 3px $iconShadow;
+						color: $social-icon-active-color;
 					}
 				}
 			}

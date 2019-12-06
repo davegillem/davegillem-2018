@@ -124,6 +124,7 @@ module.exports = {
 		'func-style': 'off',
 		'generator-star-spacing': 'off',
 		// 'getter-return': 'error',
+		'grouped-accessor-pairs': 'warn',
 		'guard-for-in': 'error',
 		'handle-callback-err': 'off',
 		'id-length': 'off',
@@ -173,6 +174,7 @@ module.exports = {
 		'no-console': 'off',
 		// 'no-const-assign': 'error',
 		// 'no-constant-condition': 'error',
+		'no-constructor-return': 'warn',
 		'no-continue': 'off',
 		// 'no-control-regex': 'error',
 		// 'no-debugger': 'error',
@@ -180,6 +182,7 @@ module.exports = {
 		'no-div-regex': 'off',
 		// 'no-dupe-args': 'error'
 		// 'no-dupe-class-members': 'error',
+		'no-dupe-else-if': 'error',
 		// 'no-dupe-keys': 'error',
 		// 'no-duplicate-case': 'error',
 		'no-else-return': [
@@ -263,6 +266,7 @@ module.exports = {
 		// 'no-self-assign': 'error',
 		'no-self-compare': 'error',
 		'no-sequences': 'warn',
+		'no-setter-return': 'error',
 		'no-shadow': [
 			'off',
 			{
@@ -378,6 +382,7 @@ module.exports = {
 			},
 		],
 		// 'prefer-const': 'off',  // @typescript-eslint/recommended
+		'prefer-exponentiation-operator': 'error',
 		'prefer-named-capture-group': 'off',
 		'prefer-object-spread': 'off', // not ready until ES2018
 		'prefer-promise-reject-errors': 'off',

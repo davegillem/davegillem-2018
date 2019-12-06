@@ -1,17 +1,17 @@
-#about{
-	#about-content{
-		>h2{
+#about {
+	#about-content {
+		> h2 {
 			color: $contentHeading;
 			font-size: 25px;
 			font-style: normal;
-			font-weight: 700;
+
 			line-height: 30px;
 			padding-bottom: 20px;
 			padding-top: 20px;
 			text-transform: none;
 			@include wrapquotes($wrapQuotes);
 		}
-		>div{
+		> div {
 			margin: 20px 30px;
 		}
 	}
